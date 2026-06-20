@@ -3,9 +3,9 @@ import { Controller, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { employeeSchema, type EmployeeInput } from "@nutrivae/shared";
-import { api } from "../../lib/api";
-import { Drawer } from "..";
-import { DatePickerField, FormField, ThemedSelect } from "../forms";
+import { api } from "../../../lib/api";
+import { Drawer } from "../../../components";
+import { DatePickerField, FormField, ThemedSelect } from "../../../components/forms";
 
 type Meta = {
   departments: Array<{ id: string; name: string }>;

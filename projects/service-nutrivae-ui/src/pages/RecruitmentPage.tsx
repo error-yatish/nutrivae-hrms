@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Plus, MapPin, Users, MoreHorizontal } from "lucide-react";
 import { api } from "../lib/api";
 import { Avatar, Badge, Skeleton } from "../components";
-import { JobOpeningDrawer } from "../components/drawers";
+import { JobOpeningDrawer } from "../modules/recruitment";
 import { useState } from "react";
 import { useAuth } from "../lib/auth";
 

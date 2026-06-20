@@ -1,5 +1,5 @@
-import { Drawer } from "..";
-import { FormField, TextAreaField, ThemedSelect } from "../forms";
+import { Drawer } from "../../../components";
+import { FormField, TextAreaField, ThemedSelect } from "../../../components/forms";
 
 type ProjectForm = {
   name: string;

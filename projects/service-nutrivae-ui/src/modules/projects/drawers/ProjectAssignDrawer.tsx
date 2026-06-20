@@ -1,6 +1,6 @@
-import { Drawer } from "..";
-import { FormField } from "../";
-import { ThemedSelect } from "../forms";
+import { Drawer } from "../../../components";
+import { FormField } from "../../../components";
+import { ThemedSelect } from "../../../components/forms";
 
 type AssignmentForm = {
   employeeId: string;

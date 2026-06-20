@@ -16,6 +16,3 @@ export * from "./data-display";
 
 // Form Components
 export * from "./forms";
-
-// Drawer Components
-export * from "./drawers";

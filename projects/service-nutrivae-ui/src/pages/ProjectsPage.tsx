@@ -4,7 +4,7 @@ import { useState } from "react";
 import { api } from "../lib/api";
 import { Avatar, Badge } from "../components";
 import { FormField, PageHeader, TextAreaField } from "../components";
-import { ProjectAssignDrawer, ProjectCreateDrawer } from "../components/drawers";
+import { ProjectAssignDrawer, ProjectCreateDrawer } from "../modules/projects";
 import { useAuth } from "../lib/auth";
 
 type Project = {

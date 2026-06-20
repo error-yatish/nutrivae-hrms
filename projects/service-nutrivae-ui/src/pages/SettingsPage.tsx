@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Building2, BriefcaseBusiness, ShieldCheck, Palette, Plus } from "lucide-react";
 import { useState } from "react";
 import { api } from "../lib/api";
-import { SettingsDrawer } from "../components/drawers";
+import { SettingsDrawer } from "../modules/settings";
 import { useAuth } from "../lib/auth";
 import { ThemedSelect } from "../components/forms";
 

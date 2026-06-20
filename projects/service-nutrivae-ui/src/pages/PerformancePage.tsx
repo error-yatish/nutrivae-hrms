@@ -4,7 +4,7 @@ import { api } from "../lib/api";
 import { Avatar, Badge, Skeleton } from "../components";
 import { useState } from "react";
 import { useAuth } from "../lib/auth";
-import { GoalDrawer } from "../components/drawers";
+import { GoalDrawer } from "../modules/performance";
 
 type Goal = {
   id: string;

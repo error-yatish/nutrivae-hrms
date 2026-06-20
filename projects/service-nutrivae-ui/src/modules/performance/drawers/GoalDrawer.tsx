@@ -2,9 +2,9 @@ import { Controller, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { goalSchema, type GoalInput } from "@nutrivae/shared";
-import { api } from "../../lib/api";
-import { Drawer } from "..";
-import { ThemedSelect } from "../forms";
+import { api } from "../../../lib/api";
+import { Drawer } from "../../../components";
+import { ThemedSelect } from "../../../components/forms";
 
 export function GoalDrawer({
   open,

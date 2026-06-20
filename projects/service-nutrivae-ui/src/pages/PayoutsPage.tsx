@@ -4,7 +4,7 @@ import { useState } from "react";
 import { format } from "date-fns";
 import { api } from "../lib/api";
 import { Avatar, Badge } from "../components";
-import { PayoutScheduleDrawer } from "../components/drawers";
+import { PayoutScheduleDrawer } from "../modules/payouts";
 import { useAuth } from "../lib/auth";
 import { ThemedSelect } from "../components/forms";
 
