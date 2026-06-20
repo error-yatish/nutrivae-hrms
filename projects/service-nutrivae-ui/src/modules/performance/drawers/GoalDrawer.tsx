@@ -5,6 +5,7 @@ import { goalSchema, type GoalInput } from "@nutrivae/shared";
 import { api } from "../../../lib/api";
 import { Drawer } from "../../../components";
 import { ThemedSelect } from "../../../components/forms";
+import { goalStatusOptions } from "../constants";
 
 export function GoalDrawer({
   open,
@@ -79,11 +80,7 @@ export function GoalDrawer({
                 label="Status"
                 placeholder="Choose status"
                 value={field.value}
-                options={[
-                  { value: "ACTIVE", label: "Active" },
-                  { value: "DRAFT", label: "Draft" },
-                  { value: "AT_RISK", label: "At risk" }
-                ]}
+                options={goalStatusOptions}
                 onChange={field.onChange}
               />
             )}

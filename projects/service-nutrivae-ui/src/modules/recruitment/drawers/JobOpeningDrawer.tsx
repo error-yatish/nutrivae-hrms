@@ -5,6 +5,7 @@ import { jobOpeningSchema, type JobOpeningInput } from "@nutrivae/shared";
 import { api } from "../../../lib/api";
 import { Drawer } from "../../../components";
 import { ThemedSelect } from "../../../components/forms";
+import { jobOpeningEmploymentTypeOptions, jobOpeningStatusOptions } from "../constants";
 
 export function JobOpeningDrawer({
   open,
@@ -78,12 +79,7 @@ export function JobOpeningDrawer({
                 label="Employment type"
                 placeholder="Choose employment type"
                 value={field.value}
-                options={[
-                  { value: "Full-time", label: "Full-time" },
-                  { value: "Part-time", label: "Part-time" },
-                  { value: "Contract", label: "Contract" },
-                  { value: "Internship", label: "Internship" }
-                ]}
+                options={jobOpeningEmploymentTypeOptions}
                 onChange={field.onChange}
               />
             )}
@@ -97,10 +93,7 @@ export function JobOpeningDrawer({
               label="Publishing status"
               placeholder="Choose status"
               value={field.value}
-              options={[
-                { value: "OPEN", label: "Open" },
-                { value: "DRAFT", label: "Save as draft" }
-              ]}
+              options={jobOpeningStatusOptions}
               onChange={field.onChange}
             />
           )}

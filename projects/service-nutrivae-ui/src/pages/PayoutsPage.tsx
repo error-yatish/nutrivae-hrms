@@ -6,7 +6,6 @@ import { api } from "../lib/api";
 import { Avatar, Badge } from "../components";
 import { PayoutScheduleDrawer } from "../modules/payouts";
 import { useAuth } from "../lib/auth";
-import { ThemedSelect } from "../components/forms";
 
 type Payout = {
   id: string;
@@ -26,21 +25,6 @@ export function PayoutsPage() {
     queryKey: ["payout-employees"],
     queryFn: () =>
       api.get<Array<{ id: string; firstName: string; lastName: string }>>("/employees?pageSize=50")
-  });
-  const [form, setForm] = useState({
-    employeeId: "",
-    amount: "",
-    currency: "USD",
-    type: "SALARY",
-    scheduledFor: new Date().toISOString().slice(0, 10),
-    note: ""
-  });
-  const create = useMutation({
-    mutationFn: () => api.post("/payouts", form),
-    onSuccess: () => {
-      setOpen(false);
-      void client.invalidateQueries({ queryKey: ["payouts"] });
-    }
   });
   const status = useMutation({
     mutationFn: ({ id, value }: { id: string; value: string }) =>

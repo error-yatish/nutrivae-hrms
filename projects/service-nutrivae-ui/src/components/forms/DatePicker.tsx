@@ -16,6 +16,7 @@ import { CalendarDays, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { clsx } from "clsx";
+import { useClickOutside } from "../../common/hooks/useClickOutside";
 
 export interface DatePickerProps {
   value?: string;
@@ -78,19 +79,13 @@ export function DatePicker({
     if (open && selectedDate && isValid(selectedDate)) setVisibleMonth(selectedDate);
   }, [open, value]);
 
+  useClickOutside([containerRef, calendarRef], () => setOpen(false), open);
+
   useEffect(() => {
     if (!open) return;
-    const close = (event: MouseEvent) => {
-      const target = event.target as Node;
-      if (!containerRef.current?.contains(target) && !calendarRef.current?.contains(target)) setOpen(false);
-    };
     const closeOnEscape = (event: KeyboardEvent) => event.key === "Escape" && setOpen(false);
-    document.addEventListener("mousedown", close, true);
     document.addEventListener("keydown", closeOnEscape);
-    return () => {
-      document.removeEventListener("mousedown", close, true);
-      document.removeEventListener("keydown", closeOnEscape);
-    };
+    return () => document.removeEventListener("keydown", closeOnEscape);
   }, [open]);
 
   useLayoutEffect(() => {

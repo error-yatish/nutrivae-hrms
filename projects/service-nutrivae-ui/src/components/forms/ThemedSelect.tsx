@@ -2,6 +2,7 @@ import { Check, ChevronDown } from "lucide-react";
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
 import { createPortal } from "react-dom";
 import { clsx } from "clsx";
+import { useClickOutside } from "../../common/hooks/useClickOutside";
 
 export interface ThemedSelectOption {
   value: string;
@@ -110,17 +111,7 @@ export function ThemedSelect({
     }
   };
 
-  useEffect(() => {
-    if (!open) return;
-    const close = (event: MouseEvent) => {
-      const target = event.target as Node;
-      if (!containerRef.current?.contains(target) && !menuRef.current?.contains(target)) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", close, true);
-    return () => document.removeEventListener("mousedown", close, true);
-  }, [open]);
+  useClickOutside([containerRef, menuRef], () => setOpen(false), open);
 
   useLayoutEffect(() => {
     if (!open) return;

@@ -3,6 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { api } from "../../../lib/api";
 import { Drawer } from "../../../components";
 import { ThemedSelect } from "../../../components/forms";
+import { payoutTypeOptions } from "../constants";
 
 type Employee = { id: string; firstName: string; lastName: string };
 
@@ -95,13 +96,7 @@ export function PayoutScheduleDrawer({
             label="Type"
             placeholder="Choose type"
             value={form.type}
-            options={[
-              { value: "SALARY", label: "SALARY" },
-              { value: "BONUS", label: "BONUS" },
-              { value: "REIMBURSEMENT", label: "REIMBURSEMENT" },
-              { value: "COMMISSION", label: "COMMISSION" },
-              { value: "OTHER", label: "OTHER" }
-            ]}
+            options={payoutTypeOptions}
             onChange={(value) => setForm({ ...form, type: value })}
           />
           <div>

@@ -25,18 +25,10 @@ import { useAuth } from "../lib/auth";
 import { ThemedSelect } from "./forms";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "../lib/api";
+import { navigationItems } from "../common/constants/navigation";
 
-const navigation = [
-  { label: "Overview", path: "/", icon: LayoutDashboard },
-  { label: "People", path: "/employees", icon: Users },
-  { label: "Time off", path: "/leave", icon: CalendarDays },
-  { label: "Performance", path: "/performance", icon: Target },
-  { label: "Recruitment", path: "/recruitment", icon: BriefcaseBusiness },
-  { label: "Compensation", path: "/payroll", icon: WalletCards },
-  { label: "Payouts", path: "/payouts", icon: WalletCards },
-  { label: "Projects", path: "/projects", icon: FolderKanban },
-  { label: "Analytics", path: "/analytics", icon: BarChart3 }
-];
+const navigation = navigationItems;
+
 
 export function Layout() {
   const [mobileOpen, setMobileOpen] = useState(false);

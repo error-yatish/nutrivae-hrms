@@ -1,5 +1,6 @@
 import { Drawer } from "../../../components";
 import { FormField, TextAreaField, ThemedSelect } from "../../../components/forms";
+import { projectStatusOptions } from "../constants";
 
 type ProjectForm = {
   name: string;
@@ -61,12 +62,7 @@ export function ProjectCreateDrawer({
           label="Status"
           placeholder="Choose status"
           value={projectForm.status}
-          options={[
-            { value: "PLANNED", label: "Planned" },
-            { value: "ACTIVE", label: "Active" },
-            { value: "ON_HOLD", label: "On hold" },
-            { value: "COMPLETED", label: "Completed" }
-          ]}
+          options={projectStatusOptions}
           onChange={(value) => onChange({ ...projectForm, status: value })}
         />
         <div className="form-actions">

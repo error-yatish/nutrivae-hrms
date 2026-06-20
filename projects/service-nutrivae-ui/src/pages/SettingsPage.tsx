@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Building2, BriefcaseBusiness, ShieldCheck, Palette, Plus } from "lucide-react";
 import { useState } from "react";
 import { api } from "../lib/api";
-import { SettingsDrawer } from "../modules/settings";
+import { SettingsDrawer, countryOptions, currencyOptions, permissions, timezoneOptions } from "../modules/settings";
 import { useAuth } from "../lib/auth";
 import { ThemedSelect } from "../components/forms";
 
@@ -28,15 +28,6 @@ type Organization = {
   roles: Array<{ id: string; name: string; description?: string; permissions: string[] }>;
 };
 
-const permissions: Array<[string, string]> = [
-  ["employees.manage", "Manage employees"],
-  ["organization.manage", "Manage departments and titles"],
-  ["leave.approve", "Approve leave"],
-  ["goals.manage", "Manage goals"],
-  ["recruitment.manage", "Manage recruitment"],
-  ["payouts.manage", "Manage payouts"],
-  ["projects.manage", "Manage projects and assignments"]
-];
 
 export function SettingsPage() {
   const client = useQueryClient();
@@ -315,29 +306,7 @@ export function SettingsPage() {
   );
 }
 
-const countryOptions = [
-  { value: "United States", label: "United States" },
-  { value: "India", label: "India" },
-  { value: "United Kingdom", label: "United Kingdom" },
-  { value: "Canada", label: "Canada" },
-  { value: "Australia", label: "Australia" },
-  { value: "United Arab Emirates", label: "United Arab Emirates" }
-];
-const currencyOptions = [
-  { value: "USD", label: "USD — US Dollar" },
-  { value: "INR", label: "INR — Indian Rupee" },
-  { value: "GBP", label: "GBP — British Pound" },
-  { value: "EUR", label: "EUR — Euro" },
-  { value: "CAD", label: "CAD — Canadian Dollar" },
-  { value: "AED", label: "AED — UAE Dirham" }
-];
-const timezoneOptions = [
-  { value: "America/New_York", label: "Eastern Time (US)" },
-  { value: "America/Los_Angeles", label: "Pacific Time (US)" },
-  { value: "Asia/Kolkata", label: "India Standard Time" },
-  { value: "Europe/London", label: "London" },
-  { value: "Asia/Dubai", label: "Dubai" }
-];
+
 
 function SettingsCard({
   title,

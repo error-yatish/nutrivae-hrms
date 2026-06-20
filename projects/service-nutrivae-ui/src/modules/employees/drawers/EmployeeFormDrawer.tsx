@@ -6,6 +6,12 @@ import { employeeSchema, type EmployeeInput } from "@nutrivae/shared";
 import { api } from "../../../lib/api";
 import { Drawer } from "../../../components";
 import { DatePickerField, FormField, ThemedSelect } from "../../../components/forms";
+import {
+  employeeBloodGroupOptions,
+  employeeGenderOptions,
+  employeeMaritalStatusOptions,
+  employeeStatusOptions
+} from "../constants";
 
 type Meta = {
   departments: Array<{ id: string; name: string }>;
@@ -172,12 +178,7 @@ export function EmployeeFormDrawer({
               <ThemedSelect
                 label="Status"
                 value={field.value}
-                options={[
-                  { value: "ACTIVE", label: "Active" },
-                  { value: "PROBATION", label: "Probation" },
-                  { value: "ON_LEAVE", label: "On leave" },
-                  { value: "INACTIVE", label: "Inactive" }
-                ]}
+                options={employeeStatusOptions}
                 onChange={field.onChange}
               />
             )}
@@ -207,12 +208,7 @@ export function EmployeeFormDrawer({
                 label="Gender"
                 placeholder="Select gender"
                 value={field.value}
-                options={[
-                  { value: "Female", label: "Female" },
-                  { value: "Male", label: "Male" },
-                  { value: "Non-binary", label: "Non-binary" },
-                  { value: "Prefer not to say", label: "Prefer not to say" }
-                ]}
+                options={employeeGenderOptions}
                 onChange={field.onChange}
               />
             )}
@@ -225,12 +221,7 @@ export function EmployeeFormDrawer({
                 label="Marital status"
                 placeholder="Select marital status"
                 value={field.value}
-                options={[
-                  { value: "Single", label: "Single" },
-                  { value: "Married", label: "Married" },
-                  { value: "Divorced", label: "Divorced" },
-                  { value: "Widowed", label: "Widowed" }
-                ]}
+                options={employeeMaritalStatusOptions}
                 onChange={field.onChange}
               />
             )}
@@ -244,16 +235,7 @@ export function EmployeeFormDrawer({
                 label="Blood group"
                 placeholder="Select blood group"
                 value={field.value}
-                options={[
-                  { value: "A+", label: "A+" },
-                  { value: "A-", label: "A-" },
-                  { value: "B+", label: "B+" },
-                  { value: "B-", label: "B-" },
-                  { value: "AB+", label: "AB+" },
-                  { value: "AB-", label: "AB-" },
-                  { value: "O+", label: "O+" },
-                  { value: "O-", label: "O-" }
-                ]}
+                options={employeeBloodGroupOptions}
                 onChange={field.onChange}
               />
             )}
