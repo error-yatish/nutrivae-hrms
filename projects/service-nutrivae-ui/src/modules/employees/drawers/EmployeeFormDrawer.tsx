@@ -236,7 +236,28 @@ export function EmployeeFormDrawer({
             )}
           />
           <FormField label="Nationality" {...register("nationality")} />
-          <FormField label="Blood group" {...register("bloodGroup")} />
+          <Controller
+            control={control}
+            name="bloodGroup"
+            render={({ field }) => (
+              <ThemedSelect
+                label="Blood group"
+                placeholder="Select blood group"
+                value={field.value}
+                options={[
+                  { value: "A+", label: "A+" },
+                  { value: "A-", label: "A-" },
+                  { value: "B+", label: "B+" },
+                  { value: "B-", label: "B-" },
+                  { value: "AB+", label: "AB+" },
+                  { value: "AB-", label: "AB-" },
+                  { value: "O+", label: "O+" },
+                  { value: "O-", label: "O-" }
+                ]}
+                onChange={field.onChange}
+              />
+            )}
+          />
           <FormField label="Country" {...register("country")} />
           <FormField className="sm:col-span-2" label="Address" {...register("address")} />
           <FormField label="City" {...register("city")} />

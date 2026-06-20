@@ -114,10 +114,12 @@ export function ThemedSelect({
     if (!open) return;
     const close = (event: MouseEvent) => {
       const target = event.target as Node;
-      if (!containerRef.current?.contains(target) && !menuRef.current?.contains(target)) setOpen(false);
+      if (!containerRef.current?.contains(target) && !menuRef.current?.contains(target)) {
+        setOpen(false);
+      }
     };
-    document.addEventListener("mousedown", close);
-    return () => document.removeEventListener("mousedown", close);
+    document.addEventListener("mousedown", close, true);
+    return () => document.removeEventListener("mousedown", close, true);
   }, [open]);
 
   useLayoutEffect(() => {
@@ -181,6 +183,7 @@ export function ThemedSelect({
             id={listboxId}
             role="listbox"
             aria-activedescendant={`${listboxId}-${activeIndex}`}
+            onMouseDown={(e) => e.stopPropagation()}
             className="fixed z-[120] overflow-y-auto overscroll-contain rounded-xl border border-line bg-white p-1.5 text-ink shadow-[0_18px_50px_rgba(23,33,31,0.18)] animate-in"
             style={{
               left: menuPosition.left,

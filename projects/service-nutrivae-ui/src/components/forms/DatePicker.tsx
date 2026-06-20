@@ -85,10 +85,10 @@ export function DatePicker({
       if (!containerRef.current?.contains(target) && !calendarRef.current?.contains(target)) setOpen(false);
     };
     const closeOnEscape = (event: KeyboardEvent) => event.key === "Escape" && setOpen(false);
-    document.addEventListener("mousedown", close);
+    document.addEventListener("mousedown", close, true);
     document.addEventListener("keydown", closeOnEscape);
     return () => {
-      document.removeEventListener("mousedown", close);
+      document.removeEventListener("mousedown", close, true);
       document.removeEventListener("keydown", closeOnEscape);
     };
   }, [open]);
