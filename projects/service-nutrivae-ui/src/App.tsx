@@ -7,7 +7,11 @@ import { EmployeesPage } from "@/pages/EmployeesPage";
 import { LeavePage } from "@/pages/LeavePage";
 import { PerformancePage } from "@/pages/PerformancePage";
 import { RecruitmentPage } from "@/pages/RecruitmentPage";
-import { AnalyticsPage, PayrollPage } from "@/pages/PlaceholderPage";
+import { AnalyticsPage } from "@/pages/AnalyticsPage";
+import { PayrollPage } from "@/pages/PayrollPage";
+import { TaxationPage } from "@/pages/TaxationPage";
+import { QuickInfoPage } from "@/pages/QuickInfoPage";
+import { WorkflowPage } from "@/pages/WorkflowPage";
 import { Sprout } from "lucide-react";
 import { SettingsPage } from "@/pages/SettingsPage";
 import { PayoutsPage } from "@/pages/PayoutsPage";
@@ -27,8 +31,7 @@ function ProtectedRoutes() {
 }
 
 function HomeRoute() {
-  const { user } = useAuth();
-  return user?.role === "EMPLOYEE" ? <Navigate to="/profile" replace /> : <DashboardPage />;
+  return <DashboardPage />;
 }
 
 export default function App() {
@@ -44,6 +47,9 @@ export default function App() {
         <Route path="/performance" element={<PerformancePage />} />
         <Route path="/recruitment" element={<RecruitmentPage />} />
         <Route path="/payroll" element={<PayrollPage />} />
+        <Route path="/taxation" element={<TaxationPage />} />
+        <Route path="/quick-info" element={<QuickInfoPage />} />
+        <Route path="/workflow" element={<WorkflowPage />} />
         <Route path="/payouts" element={<PayoutsPage />} />
         <Route path="/analytics" element={<AnalyticsPage />} />
         <Route path="/settings" element={<SettingsPage />} />

@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { employeeSchema, type EmployeeInput } from "@nutrivae/shared";
 import { api } from "@/lib/api";
-import { Drawer } from "@/components";
+import { Drawer, Tabs } from "@/components";
 import { DatePickerField, FormField, ThemedSelect } from "@/components/forms";
 import {
   employeeBloodGroupOptions,
@@ -59,6 +59,7 @@ export function EmployeeFormDrawer({
   employee?: Employee | null;
   onCreated: () => void;
 }) {
+  const [activeSection, setActiveSection] = useState<"employment" | "personal" | "compliance">("employment");
   const {
     register,
     control,
@@ -117,149 +118,165 @@ export function EmployeeFormDrawer({
   return (
     <Drawer open={open} onClose={onClose} title={employee ? "Edit employee" : "Add a new employee"}>
       <form className="space-y-6" onSubmit={handleSubmit((data) => mutation.mutate(data))}>
-        <fieldset className="form-grid">
-          <legend className="mb-3 w-full font-display font-bold sm:col-span-2">Employment</legend>
-          <FormField label="First name" error={errors.firstName?.message} {...register("firstName")} />
-          <FormField label="Last name" error={errors.lastName?.message} {...register("lastName")} />
-          <FormField
-            className="sm:col-span-2"
-            label="Work email"
-            type="email"
-            error={errors.workEmail?.message}
-            {...register("workEmail")}
-          />
-          <Controller
-            control={control}
-            name="departmentId"
-            render={({ field }) => (
-              <ThemedSelect
-                label="Department"
-                placeholder="Select department"
-                value={field.value}
-                options={(meta?.departments ?? []).map((item) => ({
-                  value: item.id,
-                  label: item.name
-                }))}
-                onChange={field.onChange}
-              />
-            )}
-          />
-          <Controller
-            control={control}
-            name="jobTitleId"
-            render={({ field }) => (
-              <ThemedSelect
-                label="Job title"
-                placeholder="Select job title"
-                value={field.value}
-                options={(meta?.jobTitles ?? []).map((item) => ({
-                  value: item.id,
-                  label: item.name
-                }))}
-                onChange={field.onChange}
-              />
-            )}
-          />
-          <Controller
-            control={control}
-            name="startDate"
-            render={({ field }) => (
-              <DatePickerField
-                label="Start date"
-                value={field.value ? String(field.value).slice(0, 10) : ""}
-                onChange={field.onChange}
-              />
-            )}
-          />
-          <Controller
-            control={control}
-            name="status"
-            render={({ field }) => (
-              <ThemedSelect
-                label="Status"
-                value={field.value}
-                options={employeeStatusOptions}
-                onChange={field.onChange}
-              />
-            )}
-          />
-        </fieldset>
-        <fieldset className="form-grid">
-          <legend className="mb-3 w-full font-display font-bold sm:col-span-2">Contact and personal</legend>
-          <FormField label="Personal email" type="email" {...register("personalEmail")} />
-          <FormField label="Phone" {...register("phone")} />
-          <Controller
-            control={control}
-            name="dateOfBirth"
-            render={({ field }) => (
-              <DatePickerField
-                label="Date of birth"
-                max={new Date().toISOString().slice(0, 10)}
-                value={field.value ? String(field.value).slice(0, 10) : ""}
-                onChange={field.onChange}
-              />
-            )}
-          />
-          <Controller
-            control={control}
-            name="gender"
-            render={({ field }) => (
-              <ThemedSelect
-                label="Gender"
-                placeholder="Select gender"
-                value={field.value}
-                options={employeeGenderOptions}
-                onChange={field.onChange}
-              />
-            )}
-          />
-          <Controller
-            control={control}
-            name="maritalStatus"
-            render={({ field }) => (
-              <ThemedSelect
-                label="Marital status"
-                placeholder="Select marital status"
-                value={field.value}
-                options={employeeMaritalStatusOptions}
-                onChange={field.onChange}
-              />
-            )}
-          />
-          <FormField label="Nationality" {...register("nationality")} />
-          <Controller
-            control={control}
-            name="bloodGroup"
-            render={({ field }) => (
-              <ThemedSelect
-                label="Blood group"
-                placeholder="Select blood group"
-                value={field.value}
-                options={employeeBloodGroupOptions}
-                onChange={field.onChange}
-              />
-            )}
-          />
-          <FormField label="Country" {...register("country")} />
-          <FormField className="sm:col-span-2" label="Address" {...register("address")} />
-          <FormField label="City" {...register("city")} />
-          <FormField label="State" {...register("state")} />
-          <FormField label="Postal code" {...register("postalCode")} />
-        </fieldset>
-        <fieldset className="form-grid">
-          <legend className="mb-3 w-full font-display font-bold sm:col-span-2">
-            Emergency, statutory and bank
-          </legend>
-          <FormField label="Emergency contact" {...register("emergencyContactName")} />
-          <FormField label="Emergency phone" {...register("emergencyContactPhone")} />
-          <FormField label="Tax identifier" {...register("taxIdentifier")} />
-          <FormField label="Bank name" {...register("bankName")} />
-          <FormField
-            className="sm:col-span-2"
-            label="Bank account number"
-            {...register("bankAccountNumber")}
-          />
-        </fieldset>
+        <Tabs
+          value={activeSection}
+          onChange={setActiveSection}
+          ariaLabel="Employee form sections"
+          items={[
+            { id: "employment", label: "Employment" },
+            { id: "personal", label: "Contact & personal" },
+            { id: "compliance", label: "Emergency & bank" }
+          ]}
+        />
+        {activeSection === "employment" && (
+          <fieldset className="form-grid">
+            <legend className="mb-3 w-full font-display font-bold sm:col-span-2">Employment</legend>
+            <FormField label="First name" error={errors.firstName?.message} {...register("firstName")} />
+            <FormField label="Last name" error={errors.lastName?.message} {...register("lastName")} />
+            <FormField
+              className="sm:col-span-2"
+              label="Work email"
+              type="email"
+              error={errors.workEmail?.message}
+              {...register("workEmail")}
+            />
+            <Controller
+              control={control}
+              name="departmentId"
+              render={({ field }) => (
+                <ThemedSelect
+                  label="Department"
+                  placeholder="Select department"
+                  value={field.value}
+                  options={(meta?.departments ?? []).map((item) => ({
+                    value: item.id,
+                    label: item.name
+                  }))}
+                  onChange={field.onChange}
+                />
+              )}
+            />
+            <Controller
+              control={control}
+              name="jobTitleId"
+              render={({ field }) => (
+                <ThemedSelect
+                  label="Job title"
+                  placeholder="Select job title"
+                  value={field.value}
+                  options={(meta?.jobTitles ?? []).map((item) => ({
+                    value: item.id,
+                    label: item.name
+                  }))}
+                  onChange={field.onChange}
+                />
+              )}
+            />
+            <Controller
+              control={control}
+              name="startDate"
+              render={({ field }) => (
+                <DatePickerField
+                  label="Start date"
+                  value={field.value ? String(field.value).slice(0, 10) : ""}
+                  onChange={field.onChange}
+                />
+              )}
+            />
+            <Controller
+              control={control}
+              name="status"
+              render={({ field }) => (
+                <ThemedSelect
+                  label="Status"
+                  value={field.value}
+                  options={employeeStatusOptions}
+                  onChange={field.onChange}
+                />
+              )}
+            />
+          </fieldset>
+        )}
+        {activeSection === "personal" && (
+          <fieldset className="form-grid">
+            <legend className="mb-3 w-full font-display font-bold sm:col-span-2">Contact and personal</legend>
+            <FormField label="Personal email" type="email" {...register("personalEmail")} />
+            <FormField label="Phone" {...register("phone")} />
+            <Controller
+              control={control}
+              name="dateOfBirth"
+              render={({ field }) => (
+                <DatePickerField
+                  label="Date of birth"
+                  max={new Date().toISOString().slice(0, 10)}
+                  value={field.value ? String(field.value).slice(0, 10) : ""}
+                  onChange={field.onChange}
+                />
+              )}
+            />
+            <Controller
+              control={control}
+              name="gender"
+              render={({ field }) => (
+                <ThemedSelect
+                  label="Gender"
+                  placeholder="Select gender"
+                  value={field.value}
+                  options={employeeGenderOptions}
+                  onChange={field.onChange}
+                />
+              )}
+            />
+            <Controller
+              control={control}
+              name="maritalStatus"
+              render={({ field }) => (
+                <ThemedSelect
+                  label="Marital status"
+                  placeholder="Select marital status"
+                  value={field.value}
+                  options={employeeMaritalStatusOptions}
+                  onChange={field.onChange}
+                />
+              )}
+            />
+            <FormField label="Nationality" {...register("nationality")} />
+            <Controller
+              control={control}
+              name="bloodGroup"
+              render={({ field }) => (
+                <ThemedSelect
+                  label="Blood group"
+                  placeholder="Select blood group"
+                  value={field.value}
+                  options={employeeBloodGroupOptions}
+                  onChange={field.onChange}
+                />
+              )}
+            />
+            <FormField label="Country" {...register("country")} />
+            <FormField className="sm:col-span-2" label="Address" {...register("address")} />
+            <FormField label="City" {...register("city")} />
+            <FormField label="State" {...register("state")} />
+            <FormField label="Postal code" {...register("postalCode")} />
+          </fieldset>
+        )}
+        {activeSection === "compliance" && (
+          <fieldset className="form-grid">
+            <legend className="mb-3 w-full font-display font-bold sm:col-span-2">
+              Emergency, statutory and bank
+            </legend>
+            <FormField label="Emergency contact" {...register("emergencyContactName")} />
+            <FormField label="Emergency phone" {...register("emergencyContactPhone")} />
+            <FormField label="Tax identifier" {...register("taxIdentifier")} />
+            <FormField label="Bank name" {...register("bankName")} />
+            <FormField
+              className="sm:col-span-2"
+              label="Bank account number"
+              {...register("bankAccountNumber")}
+            />
+          </fieldset>
+        )}
         {errors.root && (
           <p className="sm:col-span-2 rounded-xl border border-error bg-base-200 p-3 text-sm text-error">
             {errors.root.message}

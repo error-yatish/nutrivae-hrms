@@ -16,6 +16,7 @@ import { openApiDocument } from "./openapi.js";
 import { organizationRouter } from "./modules/organization/organization.routes.js";
 import { projectRouter } from "./modules/projects/project.routes.js";
 import { notificationRouter } from "./modules/notifications/notification.routes.js";
+import { essRouter } from "./modules/ess/ess.routes.js";
 
 export const app = express();
 app.set("trust proxy", 1);
@@ -32,6 +33,7 @@ app.use("/api/v1", coreRouter);
 app.use("/api/v1", organizationRouter);
 app.use("/api/v1", projectRouter);
 app.use("/api/v1", notificationRouter);
+app.use("/api/v1", essRouter);
 app.get("/health", (_req, res) => res.json({ status: "ok", service: "nutrivae-api-gateway" }));
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(openApiDocument));
 app.use((_req, res) => res.status(404).json({ error: { code: "NOT_FOUND", message: "Route not found." } }));

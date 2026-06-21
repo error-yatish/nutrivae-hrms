@@ -135,6 +135,42 @@ export const payoutSchema = z.object({
   note: z.preprocess((value) => (value === "" ? undefined : value), z.string().max(500).optional())
 });
 
+export const profileChangeSchema = z.object({
+  section: z.enum(["contact", "personal", "family", "career"]),
+  changes: z
+    .record(z.unknown())
+    .refine((value) => Object.keys(value).length > 0, "At least one change is required")
+});
+
+export const taxProfileSchema = z.object({
+  useNewRegime: z.boolean(),
+  claimParentMedical: z.boolean(),
+  claimDisability: z.boolean(),
+  physicallyHandicapped: z.boolean().default(false),
+  numberOfChildren: z.coerce.number().int().min(0).max(20)
+});
+
+export const taxDeclarationSchema = z.object({
+  type: z.string().min(2).max(80),
+  narration: z.string().min(2).max(300),
+  declaredAmount: z.coerce.number().nonnegative(),
+  claimedAmount: z.coerce.number().nonnegative().optional(),
+  documentUrl: z.preprocess((value) => (value === "" ? undefined : value), z.string().url().optional())
+});
+
+export const previousEmployerTaxSchema = z.object({
+  employerName: z.string().min(2).max(120),
+  basic: z.coerce.number().nonnegative(),
+  allowances: z.coerce.number().nonnegative(),
+  hra: z.coerce.number().nonnegative(),
+  da: z.coerce.number().nonnegative(),
+  grossSalary: z.coerce.number().nonnegative(),
+  professionalTax: z.coerce.number().nonnegative(),
+  tdsDeducted: z.coerce.number().nonnegative(),
+  pfDeducted: z.coerce.number().nonnegative(),
+  documentUrl: z.preprocess((value) => (value === "" ? undefined : value), z.string().url().optional())
+});
+
 export type LoginInput = z.infer<typeof loginSchema>;
 export type EmployeeInput = z.infer<typeof employeeSchema>;
 export type LeaveRequestInput = z.infer<typeof leaveRequestSchema>;
@@ -147,6 +183,10 @@ export type RoleProfileInput = z.infer<typeof roleProfileSchema>;
 export type PayoutInput = z.infer<typeof payoutSchema>;
 export type ProjectInput = z.infer<typeof projectSchema>;
 export type ProjectAssignmentInput = z.infer<typeof projectAssignmentSchema>;
+export type ProfileChangeInput = z.infer<typeof profileChangeSchema>;
+export type TaxProfileInput = z.infer<typeof taxProfileSchema>;
+export type TaxDeclarationInput = z.infer<typeof taxDeclarationSchema>;
+export type PreviousEmployerTaxInput = z.infer<typeof previousEmployerTaxSchema>;
 
 export interface AuthUser {
   id: string;

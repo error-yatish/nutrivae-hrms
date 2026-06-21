@@ -15,7 +15,11 @@ import {
   UserRound,
   FolderKanban,
   Moon,
-  Sun
+  Sun,
+  ReceiptIndianRupee,
+  ListChecks,
+  Network,
+  UserRoundCog
 } from "lucide-react";
 import { useState } from "react";
 import { clsx } from "clsx";
@@ -41,10 +45,14 @@ export function Layout() {
   const visibleNavigation =
     user?.role === "EMPLOYEE"
       ? [
-          { label: "My profile", path: "/profile", icon: Users },
+          { label: "Overview", path: "/", icon: UserRoundCog },
+          { label: "My records", path: "/profile", icon: Users },
           { label: "Time off", path: "/leave", icon: CalendarDays },
           { label: "Performance", path: "/performance", icon: Target },
-          { label: "Payouts", path: "/payouts", icon: WalletCards },
+          { label: "Salary", path: "/payroll", icon: WalletCards },
+          { label: "Taxation", path: "/taxation", icon: ReceiptIndianRupee },
+          { label: "Quick info", path: "/quick-info", icon: ListChecks },
+          { label: "Workflow", path: "/workflow", icon: Network },
           { label: "Projects", path: "/projects", icon: FolderKanban }
         ]
       : navigation;
@@ -83,7 +91,7 @@ export function Layout() {
           onChange={(companyId) => void switchCompany(companyId)}
         />
       </div>
-      <nav className="space-y-1">
+      <nav className="scrollbar-none min-h-0 flex-1 space-y-1 overflow-y-auto">
         {visibleNavigation.map(({ label, path, icon: Icon }) => (
           <NavLink
             key={path}
@@ -103,7 +111,7 @@ export function Layout() {
           </NavLink>
         ))}
       </nav>
-      <div className="mt-auto space-y-1 border-t border-base-300 pt-4">
+      <div className="shrink-0 space-y-1 border-t border-base-300 pt-4">
         <a
           className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-base-content/65 hover:bg-brand-100 hover:text-base-content"
           href="#"

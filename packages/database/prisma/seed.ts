@@ -13,6 +13,14 @@ const prisma = new PrismaClient();
 
 async function main() {
   await prisma.auditLog.deleteMany();
+  await prisma.taxDeclaration.deleteMany();
+  await prisma.previousEmployerTax.deleteMany();
+  await prisma.employeeTaxProfile.deleteMany();
+  await prisma.reimbursementAccount.deleteMany();
+  await prisma.employeeLoan.deleteMany();
+  await prisma.payslip.deleteMany();
+  await prisma.profileChangeRequest.deleteMany();
+  await prisma.employeeEssProfile.deleteMany();
   await prisma.payout.deleteMany();
   await prisma.projectAssignment.deleteMany();
   await prisma.project.deleteMany();
@@ -301,6 +309,194 @@ async function main() {
         scheduledFor: new Date("2026-07-05"),
         reference: "BONUS-Q2"
       }
+    ]
+  });
+  for (const employee of [admin, ...employees]) {
+    await prisma.salaryRecord.create({
+      data: {
+        employeeId: employee.id,
+        amount: employee.id === admin.id ? 2400000 : 1464000,
+        currency: "INR",
+        frequency: "ANNUAL",
+        effectiveFrom: new Date("2026-04-01")
+      }
+    });
+    await prisma.employeeEssProfile.create({
+      data: {
+        employeeId: employee.id,
+        employment: {
+          confirmationDate: "2024-10-01",
+          grade: employee.id === admin.id ? "G8" : "G5",
+          branch: "Bengaluru",
+          division: "Technology",
+          category: "Permanent",
+          unit: "India"
+        },
+        personal: {
+          religion: "Not specified",
+          languages: ["English", "Hindi"],
+          identificationMark: "Not specified",
+          aadhaarNumber: "XXXX XXXX 4421",
+          uan: "100123456789",
+          pfNumber: "KN/BNG/0012345/000/0000123",
+          accountType: "Salary"
+        },
+        family: [
+          { name: "Meera Sharma", relation: "Spouse", emergency: true, contactNumber: "+91 98765 43210" },
+          { name: "Ravi Sharma", relation: "Father", age: 64 }
+        ],
+        nominees: [{ name: "Meera Sharma", type: "Provident fund", percentage: 100 }],
+        immigration: [
+          {
+            passportNumber: "P1234567",
+            issueDate: "2021-08-15",
+            expiryDate: "2031-08-14",
+            issuePlace: "Bengaluru"
+          }
+        ],
+        licenses: [
+          { licenseNumber: "KA01 20200012345", vehicleType: "Four wheeler", expiryDate: "2035-06-18" }
+        ],
+        skills: [
+          { name: "Product strategy", years: 7, competency: "Excellent" },
+          { name: "Data analysis", years: 5, competency: "Very good" }
+        ],
+        languages: [
+          { language: "English", fluency: "Speak, read, write", competency: "Excellent" },
+          { language: "Hindi", fluency: "Speak, read, write", competency: "Excellent" }
+        ],
+        qualifications: [
+          {
+            degree: "MBA",
+            specification: "Strategy",
+            institute: "IIM Bangalore",
+            year: 2021,
+            courseType: "Full time"
+          }
+        ],
+        assets: [{ code: "AST-1042", description: "MacBook Pro 14", cost: 182000, issueDate: "2024-06-03" }],
+        experience: [
+          {
+            company: "Acme Labs",
+            designation: "Senior Analyst",
+            joiningDate: "2021-01-01",
+            leftDate: "2024-05-31"
+          }
+        ],
+        social: [{ organization: "Product Leaders Forum", post: "Member", duration: "Since 2023" }]
+      }
+    });
+    await prisma.employeeTaxProfile.create({
+      data: {
+        employeeId: employee.id,
+        financialYear: "2026-27",
+        useNewRegime: true,
+        claimParentMedical: true,
+        numberOfChildren: 2,
+        projectedGross: 1464000,
+        exemptAllowances: 72000,
+        projectedDeductions: 150000,
+        projectedTax: 118560,
+        tdsDeducted: 29640
+      }
+    });
+    await prisma.payslip.createMany({
+      data: [4, 5, 6].map((month) => ({
+        employeeId: employee.id,
+        month,
+        year: 2026,
+        paidDays: 30,
+        presentDays: 30,
+        basic: month === 4 ? 62500 : 65000,
+        hra: month === 4 ? 25000 : 26000,
+        conveyance: 3500,
+        educationAllowance: 1500,
+        otherAllowances: month === 4 ? 13000 : 13500,
+        providentFund: 7800,
+        professionalTax: 200,
+        tds: month === 4 ? 4100 : 4600,
+        currency: "INR"
+      }))
+    });
+    await prisma.taxDeclaration.createMany({
+      data: [
+        {
+          companyId: company.id,
+          employeeId: employee.id,
+          financialYear: "2026-27",
+          type: "80C",
+          narration: "EPF and ELSS",
+          declaredAmount: 150000,
+          approvedAmount: 150000,
+          status: "APPROVED"
+        },
+        {
+          companyId: company.id,
+          employeeId: employee.id,
+          financialYear: "2026-27",
+          type: "HRA",
+          narration: "Rent",
+          declaredAmount: 240000,
+          claimedAmount: 120000,
+          status: "PROOF_SUBMITTED"
+        }
+      ]
+    });
+    await prisma.reimbursementAccount.createMany({
+      data: [
+        {
+          companyId: company.id,
+          employeeId: employee.id,
+          paymentHead: "Medical",
+          financialYear: "2026-27",
+          currentYearCredit: 25000,
+          claimedAmount: 6500,
+          paidAmount: 6500
+        },
+        {
+          companyId: company.id,
+          employeeId: employee.id,
+          paymentHead: "Learning",
+          financialYear: "2026-27",
+          currentYearCredit: 25000
+        },
+        {
+          companyId: company.id,
+          employeeId: employee.id,
+          paymentHead: "Mobile & internet",
+          financialYear: "2026-27",
+          currentYearCredit: 12000,
+          claimedAmount: 2400,
+          paidAmount: 2400
+        }
+      ]
+    });
+  }
+  await prisma.employeeLoan.create({
+    data: {
+      employeeId: employees[0]!.id,
+      loanNumber: "LN-2026-001",
+      name: "Salary advance",
+      issuedOn: new Date("2026-01-10"),
+      amount: 120000,
+      balance: 60000,
+      installment: 10000,
+      interestRate: 0,
+      ledger: [
+        { date: "2026-06-01", amount: 10000, type: "DEDUCTION" },
+        { date: "2026-05-01", amount: 10000, type: "DEDUCTION" }
+      ]
+    }
+  });
+  await prisma.document.createMany({
+    data: [
+      {
+        employeeId: admin.id,
+        name: "Employment agreement.pdf",
+        type: "EMPLOYMENT",
+        url: "/documents/employment-agreement.pdf"
+      },
+      { employeeId: admin.id, name: "PAN card.pdf", type: "IDENTITY", url: "/documents/pan-card.pdf" }
     ]
   });
   const project = await prisma.project.create({

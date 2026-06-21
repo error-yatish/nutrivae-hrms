@@ -7,6 +7,7 @@ export * from "@/components/Badge";
 export * from "@/components/Drawer";
 export * from "@/components/Empty";
 export * from "@/components/Skeleton";
+export * from "@/components/Tabs";
 
 // Common Components
 export * from "@/components/common";
