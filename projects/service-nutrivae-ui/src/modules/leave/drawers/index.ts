@@ -1,1 +1,1 @@
-export { LeaveRequestDrawer } from "./LeaveRequestDrawer";
+export { LeaveRequestDrawer } from "@/modules/leave/drawers/LeaveRequestDrawer";

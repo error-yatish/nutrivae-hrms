@@ -1,10 +1,16 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Building2, BriefcaseBusiness, ShieldCheck, Palette, Plus } from "lucide-react";
 import { useState } from "react";
-import { api } from "../lib/api";
-import { SettingsDrawer, countryOptions, currencyOptions, permissions, timezoneOptions } from "../modules/settings";
-import { useAuth } from "../lib/auth";
-import { ThemedSelect } from "../components/forms";
+import { api } from "@/lib/api";
+import {
+  SettingsDrawer,
+  countryOptions,
+  currencyOptions,
+  permissions,
+  timezoneOptions
+} from "@/modules/settings";
+import { useAuth } from "@/lib/auth";
+import { ThemedSelect } from "@/components/forms";
 
 type Organization = {
   company: {
@@ -27,7 +33,6 @@ type Organization = {
   jobTitles: Array<{ id: string; name: string; level?: string }>;
   roles: Array<{ id: string; name: string; description?: string; permissions: string[] }>;
 };
-
 
 export function SettingsPage() {
   const client = useQueryClient();
@@ -305,8 +310,6 @@ export function SettingsPage() {
     </div>
   );
 }
-
-
 
 function SettingsCard({
   title,

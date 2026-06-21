@@ -1,1 +1,1 @@
-export * from "./drawers";
+export * from "@/modules/recruitment/drawers";

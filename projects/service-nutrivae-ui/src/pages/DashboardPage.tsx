@@ -11,9 +11,9 @@ import {
   CheckCircle2
 } from "lucide-react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
-import { api } from "../lib/api";
-import { Avatar, Badge, Skeleton } from "../components";
-import { useAuth } from "../lib/auth";
+import { api } from "@/lib/api";
+import { Avatar, Badge, Skeleton } from "@/components";
+import { useAuth } from "@/lib/auth";
 import { useNavigate } from "react-router-dom";
 
 type Dashboard = {

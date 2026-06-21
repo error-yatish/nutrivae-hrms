@@ -1,6 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import { forwardRef, type SelectHTMLAttributes } from "react";
-import { FieldMessage, type FieldMessageProps } from "./FieldMessage";
+import { FieldMessage, type FieldMessageProps } from "@/components/forms/FieldMessage";
 
 export interface SelectFieldProps
   extends Omit<SelectHTMLAttributes<HTMLSelectElement>, "className">, FieldMessageProps {

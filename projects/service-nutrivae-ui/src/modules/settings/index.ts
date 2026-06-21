@@ -1,3 +1,2 @@
-export * from "./drawers";
-export * from "./constants";
-
+export * from "@/modules/settings/drawers";
+export * from "@/modules/settings/constants";

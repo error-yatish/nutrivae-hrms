@@ -1,6 +1,6 @@
-import { Drawer } from "../../../components";
-import { FormField, TextAreaField, ThemedSelect } from "../../../components/forms";
-import { projectStatusOptions } from "../constants";
+import { Drawer } from "@/components";
+import { FormField, TextAreaField, ThemedSelect } from "@/components/forms";
+import { projectStatusOptions } from "@/modules/projects/constants";
 
 type ProjectForm = {
   name: string;

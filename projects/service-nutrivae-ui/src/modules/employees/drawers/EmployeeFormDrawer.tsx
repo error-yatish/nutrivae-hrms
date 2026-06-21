@@ -3,15 +3,15 @@ import { Controller, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { employeeSchema, type EmployeeInput } from "@nutrivae/shared";
-import { api } from "../../../lib/api";
-import { Drawer } from "../../../components";
-import { DatePickerField, FormField, ThemedSelect } from "../../../components/forms";
+import { api } from "@/lib/api";
+import { Drawer } from "@/components";
+import { DatePickerField, FormField, ThemedSelect } from "@/components/forms";
 import {
   employeeBloodGroupOptions,
   employeeGenderOptions,
   employeeMaritalStatusOptions,
   employeeStatusOptions
-} from "../constants";
+} from "@/modules/employees/constants";
 
 type Meta = {
   departments: Array<{ id: string; name: string }>;
@@ -111,7 +111,7 @@ export function EmployeeFormDrawer({
       reset();
       onCreated();
     },
-    onError: (error: any) => setError("root", { message: error.message })
+    onError: (error: Error) => setError("root", { message: error.message })
   });
 
   return (

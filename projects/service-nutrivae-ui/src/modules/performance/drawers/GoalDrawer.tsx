@@ -2,10 +2,10 @@ import { Controller, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { goalSchema, type GoalInput } from "@nutrivae/shared";
-import { api } from "../../../lib/api";
-import { Drawer } from "../../../components";
-import { ThemedSelect } from "../../../components/forms";
-import { goalStatusOptions } from "../constants";
+import { api } from "@/lib/api";
+import { Drawer } from "@/components";
+import { ThemedSelect } from "@/components/forms";
+import { goalStatusOptions } from "@/modules/performance/constants";
 
 export function GoalDrawer({
   open,
@@ -33,7 +33,7 @@ export function GoalDrawer({
       reset();
       onCreated();
     },
-    onError: (error: any) => setError("root", { message: error.message })
+    onError: (error: Error) => setError("root", { message: error.message })
   });
 
   return (

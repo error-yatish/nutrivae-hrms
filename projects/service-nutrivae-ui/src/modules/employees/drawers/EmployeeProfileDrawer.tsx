@@ -1,4 +1,4 @@
-import { Avatar, Drawer } from "../../../components";
+import { Avatar, Drawer } from "@/components";
 
 type Employee = {
   firstName: string;

@@ -1,1 +1,1 @@
-export { GoalDrawer } from "./GoalDrawer";
+export { GoalDrawer } from "@/modules/performance/drawers/GoalDrawer";

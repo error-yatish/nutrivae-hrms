@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { api } from "../../../lib/api";
-import { Drawer } from "../../../components";
-import { ThemedSelect } from "../../../components/forms";
-import { payoutTypeOptions } from "../constants";
+import { api } from "@/lib/api";
+import { Drawer } from "@/components";
+import { ThemedSelect } from "@/components/forms";
+import { payoutTypeOptions } from "@/modules/payouts/constants";
 
 type Employee = { id: string; firstName: string; lastName: string };
 

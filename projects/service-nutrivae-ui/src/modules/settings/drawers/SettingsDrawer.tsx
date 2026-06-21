@@ -1,5 +1,5 @@
-import { Drawer } from "../../../components";
-import { ThemedSelect } from "../../../components/forms";
+import { Drawer } from "@/components";
+import { ThemedSelect } from "@/components/forms";
 
 type SettingsDrawerProps = {
   open: boolean;

@@ -1,5 +1,5 @@
 import { forwardRef, type InputHTMLAttributes } from "react";
-import { FieldMessage, type FieldMessageProps } from "./FieldMessage";
+import { FieldMessage, type FieldMessageProps } from "@/components/forms/FieldMessage";
 
 export interface FormFieldProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "className">, FieldMessageProps {

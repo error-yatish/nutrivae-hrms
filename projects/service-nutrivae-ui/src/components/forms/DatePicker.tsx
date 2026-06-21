@@ -16,7 +16,7 @@ import { CalendarDays, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { clsx } from "clsx";
-import { useClickOutside } from "../../common/hooks/useClickOutside";
+import { useClickOutside } from "@/common/hooks/useClickOutside";
 
 export interface DatePickerProps {
   value?: string;
@@ -76,7 +76,9 @@ export function DatePicker({
   }, []);
 
   useEffect(() => {
-    if (open && selectedDate && isValid(selectedDate)) setVisibleMonth(selectedDate);
+    if (!open || !value) return;
+    const nextSelectedDate = parseISO(value.slice(0, 10));
+    if (isValid(nextSelectedDate)) setVisibleMonth(nextSelectedDate);
   }, [open, value]);
 
   useClickOutside([containerRef, calendarRef], () => setOpen(false), open);

@@ -1,10 +1,10 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Plus, MapPin, Users, MoreHorizontal } from "lucide-react";
-import { api } from "../lib/api";
-import { Avatar, Badge, Skeleton } from "../components";
-import { JobOpeningDrawer } from "../modules/recruitment";
+import { api } from "@/lib/api";
+import { Avatar, Badge, Skeleton } from "@/components";
+import { JobOpeningDrawer } from "@/modules/recruitment";
 import { useState } from "react";
-import { useAuth } from "../lib/auth";
+import { useAuth } from "@/lib/auth";
 
 type Job = {
   id: string;

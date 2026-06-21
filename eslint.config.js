@@ -36,7 +36,18 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": "off"
+      "react-refresh/only-export-components": "off",
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              group: ["./*", "../*"],
+              message: "Use the @/ path alias for internal UI imports."
+            }
+          ]
+        }
+      ]
     }
   },
   prettier

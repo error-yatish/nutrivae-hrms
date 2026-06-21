@@ -1,8 +1,8 @@
 import type { LucideIcon } from "lucide-react";
 import { BarChart3, WalletCards, ArrowUpRight, Download } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { api } from "../lib/api";
-import { downloadCsv } from "../lib/download";
+import { api } from "@/lib/api";
+import { downloadCsv } from "@/lib/download";
 
 export function PayrollPage() {
   const payroll = useQuery({

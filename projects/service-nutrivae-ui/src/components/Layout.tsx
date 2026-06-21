@@ -1,12 +1,9 @@
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
-  LayoutDashboard,
   Users,
   CalendarDays,
   Target,
-  BriefcaseBusiness,
   WalletCards,
-  BarChart3,
   Settings,
   Search,
   Bell,
@@ -20,15 +17,14 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { clsx } from "clsx";
-import { Avatar } from ".";
-import { useAuth } from "../lib/auth";
-import { ThemedSelect } from "./forms";
+import { Avatar } from "@/components";
+import { useAuth } from "@/lib/auth";
+import { ThemedSelect } from "@/components/forms";
 import { useQuery } from "@tanstack/react-query";
-import { api } from "../lib/api";
-import { navigationItems } from "../common/constants/navigation";
+import { api } from "@/lib/api";
+import { navigationItems } from "@/common/constants/navigation";
 
 const navigation = navigationItems;
-
 
 export function Layout() {
   const [mobileOpen, setMobileOpen] = useState(false);

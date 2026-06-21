@@ -1,4 +1,13 @@
-import { LayoutDashboard, Users, CalendarDays, Target, BriefcaseBusiness, WalletCards, BarChart3, FolderKanban } from "lucide-react";
+import {
+  LayoutDashboard,
+  Users,
+  CalendarDays,
+  Target,
+  BriefcaseBusiness,
+  WalletCards,
+  BarChart3,
+  FolderKanban
+} from "lucide-react";
 
 export const navigationItems = [
   { label: "Overview", path: "/", icon: LayoutDashboard },

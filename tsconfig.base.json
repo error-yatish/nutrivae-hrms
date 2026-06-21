@@ -8,6 +8,15 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
-    "noUncheckedIndexedAccess": true
+    "noUncheckedIndexedAccess": true,
+    "baseUrl": ".",
+    "paths": {
+      "@libs/*": ["projects/service-nutrivae-ui/src/lib/*"],
+      "@libs": ["projects/service-nutrivae-ui/src/lib"],
+      "@libs/api": ["projects/service-nutrivae-ui/src/lib/api"],
+      "@components/*": ["projects/service-nutrivae-ui/src/components/*"],
+      "@components": ["projects/service-nutrivae-ui/src/components"],
+      "@components/forms": ["projects/service-nutrivae-ui/src/components/forms"]
+    }
   }
 }

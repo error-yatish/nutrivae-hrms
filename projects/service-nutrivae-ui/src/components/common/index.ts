@@ -1,2 +1,2 @@
-export { PageHeader, type PageHeaderProps } from "./PageHeader";
-export { SectionCard, type SectionCardProps } from "./SectionCard";
+export { PageHeader, type PageHeaderProps } from "@/components/common/PageHeader";
+export { SectionCard, type SectionCardProps } from "@/components/common/SectionCard";

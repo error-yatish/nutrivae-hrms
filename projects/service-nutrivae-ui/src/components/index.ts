@@ -1,18 +1,18 @@
 // Layout & Structure
-export { Layout } from "./Layout";
+export { Layout } from "@/components/Layout";
 
 // Primitives
-export * from "./Avatar";
-export * from "./Badge";
-export * from "./Drawer";
-export * from "./Empty";
-export * from "./Skeleton";
+export * from "@/components/Avatar";
+export * from "@/components/Badge";
+export * from "@/components/Drawer";
+export * from "@/components/Empty";
+export * from "@/components/Skeleton";
 
 // Common Components
-export * from "./common";
+export * from "@/components/common";
 
 // Data Display Components
-export * from "./data-display";
+export * from "@/components/data-display";
 
 // Form Components
-export * from "./forms";
+export * from "@/components/forms";

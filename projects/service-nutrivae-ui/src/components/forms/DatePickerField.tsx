@@ -1,5 +1,5 @@
-import { DatePicker, type DatePickerProps } from "./DatePicker";
-import { FieldMessage, type FieldMessageProps } from "./FieldMessage";
+import { DatePicker, type DatePickerProps } from "@/components/forms/DatePicker";
+import { FieldMessage, type FieldMessageProps } from "@/components/forms/FieldMessage";
 
 export interface DatePickerFieldProps extends Omit<DatePickerProps, "className">, FieldMessageProps {
   label: string;

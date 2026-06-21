@@ -2,10 +2,10 @@ import { Controller, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { jobOpeningSchema, type JobOpeningInput } from "@nutrivae/shared";
-import { api } from "../../../lib/api";
-import { Drawer } from "../../../components";
-import { ThemedSelect } from "../../../components/forms";
-import { jobOpeningEmploymentTypeOptions, jobOpeningStatusOptions } from "../constants";
+import { api } from "@/lib/api";
+import { Drawer } from "@/components";
+import { ThemedSelect } from "@/components/forms";
+import { jobOpeningEmploymentTypeOptions, jobOpeningStatusOptions } from "@/modules/recruitment/constants";
 
 export function JobOpeningDrawer({
   open,
@@ -36,7 +36,7 @@ export function JobOpeningDrawer({
       reset();
       onCreated();
     },
-    onError: (error: any) => setError("root", { message: error.message })
+    onError: (error: Error) => setError("root", { message: error.message })
   });
 
   return (

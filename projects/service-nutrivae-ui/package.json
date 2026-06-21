@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "npm run build -w @nutrivae/shared",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "typecheck": "tsc -b --pretty false",

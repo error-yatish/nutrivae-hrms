@@ -3,8 +3,8 @@ import { loginSchema, type LoginInput } from "@nutrivae/shared";
 import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
 import { ArrowRight, CheckCircle2, Sprout } from "lucide-react";
-import { useAuth } from "../lib/auth";
-import { FormField } from "../components/forms";
+import { useAuth } from "@/lib/auth";
+import { FormField } from "@/components/forms";
 
 export function LoginPage() {
   const { user, login } = useAuth();

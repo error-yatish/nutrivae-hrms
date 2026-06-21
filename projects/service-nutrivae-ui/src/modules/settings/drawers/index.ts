@@ -1,1 +1,1 @@
-export { SettingsDrawer } from "./SettingsDrawer";
+export { SettingsDrawer } from "@/modules/settings/drawers/SettingsDrawer";

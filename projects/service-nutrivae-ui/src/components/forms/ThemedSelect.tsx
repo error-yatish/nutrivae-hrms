@@ -2,7 +2,7 @@ import { Check, ChevronDown } from "lucide-react";
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
 import { createPortal } from "react-dom";
 import { clsx } from "clsx";
-import { useClickOutside } from "../../common/hooks/useClickOutside";
+import { useClickOutside } from "@/common/hooks/useClickOutside";
 
 export interface ThemedSelectOption {
   value: string;

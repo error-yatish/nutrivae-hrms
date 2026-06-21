@@ -2,10 +2,10 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Plus, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { format } from "date-fns";
-import { api } from "../lib/api";
-import { Avatar, Badge } from "../components";
-import { PayoutScheduleDrawer } from "../modules/payouts";
-import { useAuth } from "../lib/auth";
+import { api } from "@/lib/api";
+import { Avatar, Badge } from "@/components";
+import { PayoutScheduleDrawer } from "@/modules/payouts";
+import { useAuth } from "@/lib/auth";
 
 type Payout = {
   id: string;

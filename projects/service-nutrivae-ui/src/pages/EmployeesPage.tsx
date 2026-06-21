@@ -14,12 +14,12 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { api } from "../lib/api";
-import { Avatar, Badge, Empty, Skeleton } from "../components";
-import { EmployeeFormDrawer, EmployeeProfileDrawer } from "../modules/employees";
-import { useAuth } from "../lib/auth";
-import { downloadCsv } from "../lib/download";
-import { ThemedSelect } from "../components/forms";
+import { api } from "@/lib/api";
+import { Avatar, Badge, Empty, Skeleton } from "@/components";
+import { EmployeeFormDrawer, EmployeeProfileDrawer } from "@/modules/employees";
+import { useAuth } from "@/lib/auth";
+import { downloadCsv } from "@/lib/download";
+import { ThemedSelect } from "@/components/forms";
 
 type Employee = {
   id: string;

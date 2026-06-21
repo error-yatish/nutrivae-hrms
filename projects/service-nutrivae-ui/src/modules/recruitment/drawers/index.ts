@@ -1,1 +1,1 @@
-export { JobOpeningDrawer } from "./JobOpeningDrawer";
+export { JobOpeningDrawer } from "@/modules/recruitment/drawers/JobOpeningDrawer";

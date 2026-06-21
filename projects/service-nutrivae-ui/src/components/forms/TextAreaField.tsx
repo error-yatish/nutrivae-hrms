@@ -1,5 +1,5 @@
 import { forwardRef, type TextareaHTMLAttributes } from "react";
-import { FieldMessage, type FieldMessageProps } from "./FieldMessage";
+import { FieldMessage, type FieldMessageProps } from "@/components/forms/FieldMessage";
 
 export interface TextAreaFieldProps
   extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, "className">, FieldMessageProps {

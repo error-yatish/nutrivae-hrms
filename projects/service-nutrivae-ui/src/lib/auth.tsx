@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import type { AuthUser, LoginInput } from "@nutrivae/shared";
-import { api, tokenStore } from "./api";
+import { api, tokenStore } from "@/lib/api";
 
 type AuthContextValue = {
   user: AuthUser | null;

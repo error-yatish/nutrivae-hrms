@@ -1,18 +1,18 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { Layout } from "./components/Layout";
-import { useAuth } from "./lib/auth";
-import { LoginPage } from "./pages/LoginPage";
-import { DashboardPage } from "./pages/DashboardPage";
-import { EmployeesPage } from "./pages/EmployeesPage";
-import { LeavePage } from "./pages/LeavePage";
-import { PerformancePage } from "./pages/PerformancePage";
-import { RecruitmentPage } from "./pages/RecruitmentPage";
-import { AnalyticsPage, PayrollPage } from "./pages/PlaceholderPage";
+import { Layout } from "@/components/Layout";
+import { useAuth } from "@/lib/auth";
+import { LoginPage } from "@/pages/LoginPage";
+import { DashboardPage } from "@/pages/DashboardPage";
+import { EmployeesPage } from "@/pages/EmployeesPage";
+import { LeavePage } from "@/pages/LeavePage";
+import { PerformancePage } from "@/pages/PerformancePage";
+import { RecruitmentPage } from "@/pages/RecruitmentPage";
+import { AnalyticsPage, PayrollPage } from "@/pages/PlaceholderPage";
 import { Sprout } from "lucide-react";
-import { SettingsPage } from "./pages/SettingsPage";
-import { PayoutsPage } from "./pages/PayoutsPage";
-import { ProfilePage } from "./pages/ProfilePage";
-import { ProjectsPage } from "./pages/ProjectsPage";
+import { SettingsPage } from "@/pages/SettingsPage";
+import { PayoutsPage } from "@/pages/PayoutsPage";
+import { ProfilePage } from "@/pages/ProfilePage";
+import { ProjectsPage } from "@/pages/ProjectsPage";
 
 function ProtectedRoutes() {
   const { user, loading } = useAuth();
