@@ -44,7 +44,13 @@ type Dashboard = {
   pipeline: Array<{ status: string; _count: number }>;
 };
 
-const colors = ["#30776b", "#ef7f68", "#f4d98a", "#8b72be", "#67a6ce"];
+const colors = [
+  "var(--color-primary)",
+  "var(--color-error)",
+  "var(--color-warning)",
+  "var(--color-secondary)",
+  "var(--color-accent)"
+];
 
 export function DashboardPage() {
   const { user } = useAuth();
@@ -68,32 +74,32 @@ export function DashboardPage() {
       value: dashboard?.stats.onLeave,
       sub: `${dashboard?.stats.pendingLeave ?? 0} requests pending`,
       icon: CalendarClock,
-      tone: "bg-orange-50 text-coral"
+      tone: "bg-error text-error-content"
     },
     {
       label: "Open positions",
       value: dashboard?.stats.openRoles,
       sub: "Across all departments",
       icon: BriefcaseBusiness,
-      tone: "bg-violet-50 text-violet-600"
+      tone: "bg-secondary text-secondary-content"
     },
     {
       label: "Active people",
       value: dashboard?.stats.activeEmployees,
       sub: "Team health is steady",
       icon: UserPlus,
-      tone: "bg-amber-50 text-amber-700"
+      tone: "bg-warning text-warning-content"
     }
   ];
   return (
     <div className="animate-in space-y-7">
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <p className="eyebrow">{format(new Date(), "EEEE · MMMM d")}</p>
+          <p className="eyebrow">{format(new Date(), "EEEE - MMMM d")}</p>
           <h1 className="mt-1 font-display text-3xl font-extrabold tracking-tight">
             Good morning, {firstName}.
           </h1>
-          <p className="mt-2 text-sm text-muted">Here’s what’s happening across Nutrivae today.</p>
+          <p className="mt-2 text-sm text-muted">Here is what is happening across Nutrivae today.</p>
         </div>
         {["ADMIN", "HR_MANAGER"].includes(user?.role ?? "") && (
           <button className="btn-primary" onClick={() => navigate("/employees?add=1")}>
@@ -109,7 +115,7 @@ export function DashboardPage() {
               <span className={`grid h-10 w-10 place-items-center rounded-xl ${tone}`}>
                 <Icon size={19} />
               </span>
-              <ArrowUpRight size={16} className="text-slate-300" />
+              <ArrowUpRight size={16} className="text-muted" />
             </div>
             {isLoading ? (
               <Skeleton className="mt-5 h-8 w-16" />
@@ -148,7 +154,7 @@ export function DashboardPage() {
                       <div className="min-w-0 flex-1">
                         <div className="truncate text-sm font-semibold">{name}</div>
                         <div className="mt-0.5 text-xs text-muted">
-                          {leave.leaveType.name} · {format(new Date(leave.startDate), "MMM d")}–
+                          {leave.leaveType.name} / {format(new Date(leave.startDate), "MMM d")} -{" "}
                           {format(new Date(leave.endDate), "MMM d")}
                         </div>
                       </div>
@@ -159,7 +165,7 @@ export function DashboardPage() {
                       >
                         {leave.status.toLowerCase()}
                       </Badge>
-                      <button className="text-slate-400">
+                      <button className="text-muted">
                         <MoreHorizontal size={18} />
                       </button>
                     </div>
@@ -173,7 +179,7 @@ export function DashboardPage() {
               <h2 className="font-display text-lg font-bold">Team distribution</h2>
               <p className="mt-1 text-xs text-muted">People by department</p>
             </div>
-            <button className="text-slate-400">
+            <button className="text-muted">
               <MoreHorizontal size={18} />
             </button>
           </div>
@@ -193,7 +199,15 @@ export function DashboardPage() {
                     <Cell key={i} fill={colors[i % colors.length]} />
                   ))}
                 </Pie>
-                <Tooltip contentStyle={{ borderRadius: 12, border: "1px solid #e3e8e6", fontSize: 12 }} />
+                <Tooltip
+                  contentStyle={{
+                    borderRadius: 8,
+                    border: "1px solid var(--color-base-300)",
+                    background: "var(--color-base-200)",
+                    color: "var(--color-base-content)",
+                    fontSize: 12
+                  }}
+                />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -231,7 +245,7 @@ export function DashboardPage() {
                   </div>
                   <span className="font-display text-sm font-bold">{goal.progress}%</span>
                 </div>
-                <div className="h-2 overflow-hidden rounded-full bg-slate-100">
+                <div className="h-2 overflow-hidden rounded-full bg-base-300">
                   <div
                     className={`h-full rounded-full ${goal.status === "AT_RISK" ? "bg-coral" : "bg-brand-600"}`}
                     style={{ width: `${goal.progress}%` }}

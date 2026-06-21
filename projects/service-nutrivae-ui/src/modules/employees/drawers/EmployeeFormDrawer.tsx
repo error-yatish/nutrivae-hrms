@@ -261,7 +261,9 @@ export function EmployeeFormDrawer({
           />
         </fieldset>
         {errors.root && (
-          <p className="sm:col-span-2 rounded-xl bg-red-50 p-3 text-sm text-red-700">{errors.root.message}</p>
+          <p className="sm:col-span-2 rounded-xl border border-error bg-base-200 p-3 text-sm text-error">
+            {errors.root.message}
+          </p>
         )}
         <div className="form-actions">
           <button type="button" className="btn-secondary" onClick={onClose}>

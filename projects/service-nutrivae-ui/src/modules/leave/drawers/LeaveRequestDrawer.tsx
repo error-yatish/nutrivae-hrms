@@ -71,7 +71,7 @@ export function LeaveRequestDrawer({
             />
           )}
         />
-        <p className="text-xs text-red-600">{errors.leaveTypeId?.message}</p>
+        <p className="text-xs text-error">{errors.leaveTypeId?.message}</p>
         <div className="grid grid-cols-2 gap-4">
           <Controller
             control={control}
@@ -101,7 +101,9 @@ export function LeaveRequestDrawer({
           <textarea className="input !h-24 py-3" {...register("reason")} />
         </div>
         {errors.root && (
-          <p className="rounded-xl bg-red-50 p-3 text-sm text-red-700">{errors.root.message}</p>
+          <p className="rounded-xl border border-error bg-base-200 p-3 text-sm text-error">
+            {errors.root.message}
+          </p>
         )}
         <div className="flex justify-end gap-2">
           <button type="button" className="btn-secondary" onClick={onClose}>

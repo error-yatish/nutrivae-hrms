@@ -9,10 +9,10 @@
     @apply border-base-300;
   }
   html {
-    @apply bg-base-200;
+    @apply bg-base-100;
   }
   body {
-    @apply m-0 bg-base-200 font-sans text-base-content antialiased;
+    @apply m-0 bg-base-100 font-sans text-base-content antialiased;
   }
   button,
   input,
@@ -28,7 +28,7 @@
 
 /* Compatibility for existing pages while they consume the semantic component layer. */
 .bg-white {
-  background-color: var(--color-base-100) !important;
+  background-color: var(--color-base-200) !important;
 }
 .bg-slate-50,
 .bg-slate-100 {

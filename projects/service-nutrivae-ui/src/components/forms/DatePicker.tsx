@@ -123,12 +123,12 @@ export function DatePicker({
         aria-expanded={open}
         onClick={() => setOpen((current) => !current)}
         className={clsx(
-          "flex h-11 w-full items-center gap-3 rounded-xl border border-line bg-white px-3.5 text-left text-sm outline-none transition hover:border-brand-500 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/10 disabled:cursor-not-allowed disabled:opacity-50",
-          open && "border-brand-500 ring-4 ring-brand-500/10"
+          "flex h-11 w-full items-center gap-3 rounded-field border border-line bg-base-200 px-3.5 text-left text-sm outline-none transition hover:border-primary focus:border-primary focus:ring-2 focus:ring-primary disabled:cursor-not-allowed disabled:opacity-50",
+          open && "border-primary ring-2 ring-primary"
         )}
       >
         <CalendarDays size={17} className="shrink-0 text-muted" />
-        <span className={clsx("min-w-0 flex-1 truncate", !selectedDate && "text-slate-400")}>
+        <span className={clsx("min-w-0 flex-1 truncate", !selectedDate && "text-muted")}>
           {selectedDate && isValid(selectedDate) ? format(selectedDate, "MMM d, yyyy") : placeholder}
         </span>
         {selectedDate && (
@@ -161,7 +161,7 @@ export function DatePicker({
             ref={calendarRef}
             role="dialog"
             aria-label="Choose date"
-            className="fixed z-[120] rounded-2xl border border-line bg-white p-3 shadow-[0_18px_50px_rgba(23,33,31,0.18)] animate-in"
+            className="fixed z-[120] rounded-field border border-line bg-base-200 p-3 shadow-float animate-in"
             style={{
               left: position.left,
               top: position.top,
@@ -173,7 +173,7 @@ export function DatePicker({
               <button
                 type="button"
                 aria-label="Previous month"
-                className="rounded-lg p-2 text-muted hover:bg-brand-50 hover:text-brand-700"
+                className="rounded-lg p-2 text-muted hover:bg-base-100 hover:text-base-content"
                 onClick={() => setVisibleMonth((month) => subMonths(month, 1))}
               >
                 <ChevronLeft size={18} />
@@ -182,7 +182,7 @@ export function DatePicker({
                 <div className="font-display text-sm font-bold">{format(visibleMonth, "MMMM yyyy")}</div>
                 <button
                   type="button"
-                  className="mt-0.5 text-[10px] font-semibold text-brand-600 hover:text-brand-900"
+                  className="mt-0.5 text-[10px] font-semibold text-muted hover:text-base-content"
                   onClick={() => setVisibleMonth(new Date())}
                 >
                   Today
@@ -191,7 +191,7 @@ export function DatePicker({
               <button
                 type="button"
                 aria-label="Next month"
-                className="rounded-lg p-2 text-muted hover:bg-brand-50 hover:text-brand-700"
+                className="rounded-lg p-2 text-muted hover:bg-base-100 hover:text-base-content"
                 onClick={() => setVisibleMonth((month) => addMonths(month, 1))}
               >
                 <ChevronRight size={18} />
@@ -220,11 +220,13 @@ export function DatePicker({
                       triggerRef.current?.focus();
                     }}
                     className={clsx(
-                      "mx-auto grid h-9 w-9 place-items-center rounded-xl text-xs font-semibold transition",
-                      outsideMonth && "text-slate-300",
-                      !outsideMonth && !selected && "text-ink hover:bg-brand-50 hover:text-brand-900",
-                      today && !selected && "ring-1 ring-brand-500",
-                      selected && "bg-brand-700 text-white shadow-sm",
+                      "mx-auto grid h-9 w-9 place-items-center rounded-field text-xs font-semibold transition",
+                      outsideMonth && "text-muted",
+                      !outsideMonth &&
+                        !selected &&
+                        "text-base-content hover:bg-brand-50 hover:text-base-content",
+                      today && !selected && "ring-1 ring-primary",
+                      selected && "bg-neutral text-neutral-content shadow-sm",
                       unavailable && "cursor-not-allowed opacity-25"
                     )}
                   >

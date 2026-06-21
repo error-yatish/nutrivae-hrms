@@ -151,10 +151,10 @@ export function ThemedSelect({
         className={clsx(
           "flex w-full items-center justify-between gap-3 rounded-field border text-left outline-none transition disabled:cursor-not-allowed disabled:opacity-50",
           variant === "sidebar"
-            ? "min-h-10 border-white/15 bg-white/10 px-3 py-2 text-xs font-semibold text-white hover:border-white/25 hover:bg-white/15 focus:ring-2 focus:ring-white/20"
-            : "h-11 border-line bg-white px-3.5 text-sm hover:border-brand-500 focus:border-brand-500 focus:ring-2 focus:ring-primary",
-          open && variant === "sidebar" && "border-white/30 bg-white/15",
-          open && variant === "default" && "border-brand-500 ring-2 ring-primary"
+            ? "min-h-10 border-base-300 bg-base-200 px-3 py-2 text-xs font-semibold text-base-content hover:border-primary hover:bg-brand-100 focus:border-primary focus:ring-2 focus:ring-primary"
+            : "h-11 border-line bg-base-200 px-3.5 text-sm hover:border-primary focus:border-primary focus:ring-2 focus:ring-primary",
+          open && variant === "sidebar" && "border-primary bg-brand-100 ring-2 ring-primary",
+          open && variant === "default" && "border-primary ring-2 ring-primary"
         )}
       >
         <span className={clsx("min-w-0 flex-1 truncate", !selected && "opacity-60")}>
@@ -175,7 +175,7 @@ export function ThemedSelect({
             role="listbox"
             aria-activedescendant={`${listboxId}-${activeIndex}`}
             onMouseDown={(e) => e.stopPropagation()}
-            className="fixed z-[120] overflow-y-auto overscroll-contain rounded-field border border-line bg-white p-1.5 text-ink shadow-[0_18px_50px_rgba(23,33,31,0.18)] animate-in"
+            className="fixed z-[120] overflow-y-auto overscroll-contain rounded-field border border-line bg-base-200 p-1.5 text-base-content shadow-float animate-in"
             style={{
               left: menuPosition.left,
               top: menuPosition.top,
@@ -199,7 +199,7 @@ export function ThemedSelect({
                   className={clsx(
                     "flex w-full items-start gap-3 rounded-field px-3 py-2.5 text-left text-sm outline-none transition disabled:cursor-not-allowed disabled:opacity-40",
                     index === activeIndex && "bg-base-300",
-                    option.value === value && "text-brand-200"
+                    option.value === value && "text-primary"
                   )}
                 >
                   <span className="min-w-0 flex-1">
@@ -211,7 +211,7 @@ export function ThemedSelect({
                     )}
                   </span>
                   <span className="grid h-5 w-5 shrink-0 place-items-center">
-                    {option.value === value && <Check size={16} className="text-brand-600" />}
+                    {option.value === value && <Check size={16} className="text-primary" />}
                   </span>
                 </button>
               ))

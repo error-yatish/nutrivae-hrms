@@ -45,7 +45,7 @@ export function JobOpeningDrawer({
         <div>
           <label className="label">Job title</label>
           <input className="input" placeholder="e.g. Product Engineer" {...register("title")} />
-          <p className="text-xs text-red-600">{errors.title?.message}</p>
+          <p className="text-xs text-error">{errors.title?.message}</p>
         </div>
         <Controller
           control={control}
@@ -65,7 +65,7 @@ export function JobOpeningDrawer({
             />
           )}
         />
-        <p className="text-xs text-red-600">{errors.departmentId?.message}</p>
+        <p className="text-xs text-error">{errors.departmentId?.message}</p>
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="label">Location</label>
@@ -99,7 +99,9 @@ export function JobOpeningDrawer({
           )}
         />
         {errors.root && (
-          <p className="rounded-xl bg-red-50 p-3 text-sm text-red-700">{errors.root.message}</p>
+          <p className="rounded-xl border border-error bg-base-200 p-3 text-sm text-error">
+            {errors.root.message}
+          </p>
         )}
         <div className="flex justify-end gap-2 pt-2">
           <button type="button" className="btn-secondary" onClick={onClose}>

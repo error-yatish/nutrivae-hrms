@@ -225,7 +225,7 @@ export function EmployeesPage() {
                             <button
                               title="View profile"
                               onClick={() => setSelected(employee)}
-                              className="rounded-lg p-2 text-muted hover:bg-white hover:text-brand-700"
+                              className="rounded-lg p-2 text-muted hover:bg-base-200 hover:text-base-content"
                             >
                               <Eye size={16} />
                             </button>
@@ -234,14 +234,14 @@ export function EmployeesPage() {
                                 <button
                                   title="Edit employee"
                                   onClick={() => setEditing(employee)}
-                                  className="rounded-lg p-2 text-muted hover:bg-white hover:text-brand-700"
+                                  className="rounded-lg p-2 text-muted hover:bg-base-200 hover:text-base-content"
                                 >
                                   <Pencil size={16} />
                                 </button>
                                 <button
                                   title="Enable employee login"
                                   onClick={() => enableLogin.mutate(employee.id)}
-                                  className="rounded-lg p-2 text-muted hover:bg-white hover:text-brand-700"
+                                  className="rounded-lg p-2 text-muted hover:bg-base-200 hover:text-base-content"
                                 >
                                   <KeyRound size={16} />
                                 </button>
@@ -253,7 +253,7 @@ export function EmployeesPage() {
                                       status: employee.status === "INACTIVE" ? "ACTIVE" : "INACTIVE"
                                     })
                                   }
-                                  className="rounded-lg p-2 text-muted hover:bg-red-50 hover:text-red-600"
+                                  className="rounded-lg p-2 text-muted hover:bg-base-200 hover:text-error"
                                 >
                                   <UserX size={16} />
                                 </button>

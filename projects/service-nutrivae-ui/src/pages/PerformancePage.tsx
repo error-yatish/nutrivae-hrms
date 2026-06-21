@@ -51,7 +51,7 @@ export function PerformancePage() {
           <div className="text-sm font-semibold">Active goals</div>
         </div>
         <div className="card p-5">
-          <TrendingUp className="text-violet-600" />
+          <TrendingUp className="text-secondary" />
           <div className="mt-4 font-display text-3xl font-extrabold">78%</div>
           <div className="text-sm font-semibold">On-track rate</div>
         </div>
@@ -73,7 +73,7 @@ export function PerformancePage() {
             : query.data?.data.map((goal) => {
                 const name = `${goal.employee.firstName} ${goal.employee.lastName}`;
                 return (
-                  <div className="rounded-2xl border border-line p-5" key={goal.id}>
+                  <div className="rounded-box border border-line p-5" key={goal.id}>
                     <div className="flex items-start justify-between gap-3">
                       <Badge tone={goal.status === "AT_RISK" ? "red" : "green"}>
                         {goal.status.toLowerCase().replace("_", " ")}
@@ -81,7 +81,7 @@ export function PerformancePage() {
                       <span className="font-display text-xl font-extrabold">{goal.progress}%</span>
                     </div>
                     <h3 className="mt-4 font-display text-base font-bold">{goal.title}</h3>
-                    <div className="mt-4 h-2 rounded-full bg-slate-100">
+                    <div className="mt-4 h-2 rounded-full bg-base-300">
                       <div
                         className={
                           goal.status === "AT_RISK"

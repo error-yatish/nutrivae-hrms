@@ -63,7 +63,7 @@ export function RecruitmentPage() {
               <Skeleton className="h-32" />
             ) : (
               query.data?.data.map((job) => (
-                <div className="rounded-2xl border border-line p-4" key={job.id}>
+                <div className="rounded-box border border-line p-4" key={job.id}>
                   <div className="flex justify-between">
                     <Badge tone="green">{job.status.toLowerCase()}</Badge>
                     <MoreHorizontal size={17} className="text-muted" />

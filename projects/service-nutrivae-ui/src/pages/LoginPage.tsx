@@ -2,12 +2,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, type LoginInput } from "@nutrivae/shared";
 import { useForm } from "react-hook-form";
 import { Navigate } from "react-router-dom";
-import { ArrowRight, CheckCircle2, Sprout } from "lucide-react";
+import { ArrowRight, CheckCircle2, Moon, Sprout, Sun } from "lucide-react";
 import { useAuth } from "@/lib/auth";
 import { FormField } from "@/components/forms";
+import { useTheme } from "@/lib/theme";
 
 export function LoginPage() {
   const { user, login } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const {
     register,
     handleSubmit,
@@ -26,7 +28,15 @@ export function LoginPage() {
     }
   };
   return (
-    <div className="grid min-h-screen bg-white lg:grid-cols-[1.05fr_.95fr]">
+    <div className="relative grid min-h-screen bg-base-100 lg:grid-cols-[1.05fr_.95fr]">
+      <button
+        type="button"
+        aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
+        onClick={toggleTheme}
+        className="theme-toggle absolute right-5 top-5 z-20"
+      >
+        {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+      </button>
       <section className="relative hidden overflow-hidden bg-brand-900 p-12 text-white lg:flex lg:flex-col">
         <div className="absolute -right-28 -top-24 h-80 w-80 rounded-full border-[60px] border-brand-700/30" />
         <div className="absolute -bottom-32 -left-28 h-96 w-96 rounded-full bg-brand-700/30 blur-2xl" />
@@ -61,7 +71,9 @@ export function LoginPage() {
             </span>
           </div>
         </div>
-        <p className="relative text-xs text-white/35">© 2026 Nutrivae. Built for teams with momentum.</p>
+        <p className="relative text-xs text-white/35">
+          Copyright 2026 Nutrivae. Built for teams with momentum.
+        </p>
       </section>
       <section className="flex items-center justify-center p-6 sm:p-12">
         <div className="w-full max-w-[420px] animate-in">
@@ -73,7 +85,7 @@ export function LoginPage() {
           </div>
           <p className="eyebrow text-brand-600">Welcome back</p>
           <h2 className="mt-2 font-display text-3xl font-extrabold">Sign in to your workspace</h2>
-          <p className="mt-2 text-sm text-muted">Your team’s day starts here.</p>
+          <p className="mt-2 text-sm text-muted">Your team's day starts here.</p>
           <form className="mt-8 space-y-5" onSubmit={handleSubmit(submit)}>
             <FormField label="Work email" type="email" error={errors.email?.message} {...register("email")} />
             <FormField
@@ -83,17 +95,19 @@ export function LoginPage() {
               {...register("password")}
             />
             {errors.root && (
-              <p className="rounded-xl bg-red-50 p-3 text-sm text-red-700">{errors.root.message}</p>
+              <p className="rounded-xl border border-error bg-base-200 p-3 text-sm text-error">
+                {errors.root.message}
+              </p>
             )}
             <button disabled={isSubmitting} className="btn-primary h-12 w-full">
-              {isSubmitting ? "Signing in…" : "Continue"}
+              {isSubmitting ? "Signing in..." : "Continue"}
               <ArrowRight size={17} />
             </button>
           </form>
-          <div className="mt-6 rounded-xl bg-brand-50 p-3 text-xs leading-5 text-brand-900">
+          <div className="mt-6 rounded-field border border-line bg-base-200 p-3 text-xs leading-5 text-base-content">
             <strong>Demo access</strong>
             <br />
-            admin@nutrivae.com · Welcome123!
+            admin@nutrivae.com / Welcome123!
           </div>
         </div>
       </section>

@@ -42,7 +42,7 @@ export function GoalDrawer({
         <div>
           <label className="label">Goal title</label>
           <input className="input" placeholder="e.g. Improve onboarding completion" {...register("title")} />
-          <p className="text-xs text-red-600">{errors.title?.message}</p>
+          <p className="text-xs text-error">{errors.title?.message}</p>
         </div>
         <Controller
           control={control}
@@ -62,7 +62,7 @@ export function GoalDrawer({
             />
           )}
         />
-        <p className="text-xs text-red-600">{errors.employeeId?.message}</p>
+        <p className="text-xs text-error">{errors.employeeId?.message}</p>
         <div>
           <label className="label">Description</label>
           <textarea className="input !h-24 py-3" {...register("description")} />
@@ -87,7 +87,9 @@ export function GoalDrawer({
           />
         </div>
         {errors.root && (
-          <p className="rounded-xl bg-red-50 p-3 text-sm text-red-700">{errors.root.message}</p>
+          <p className="rounded-xl border border-error bg-base-200 p-3 text-sm text-error">
+            {errors.root.message}
+          </p>
         )}
         <div className="flex justify-end gap-2 pt-2">
           <button type="button" className="btn-secondary" onClick={onClose}>

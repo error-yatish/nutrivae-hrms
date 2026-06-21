@@ -84,7 +84,7 @@ export function ProfilePage() {
                 <span>{goal.title}</span>
                 <b>{goal.progress}%</b>
               </div>
-              <div className="mt-2 h-2 rounded-full bg-slate-100">
+              <div className="mt-2 h-2 rounded-full bg-base-300">
                 <div className="h-full rounded-full bg-brand-600" style={{ width: `${goal.progress}%` }} />
               </div>
             </div>

@@ -161,7 +161,9 @@ export function SettingsDrawer({
             </div>
           </>
         )}
-        {error && <p className="rounded-xl bg-red-50 p-3 text-sm text-red-700">{error}</p>}
+        {error && (
+          <p className="rounded-xl border border-error bg-base-200 p-3 text-sm text-error">{error}</p>
+        )}
         <div className="flex justify-end gap-2">
           <button type="button" className="btn-secondary" onClick={onClose}>
             Cancel

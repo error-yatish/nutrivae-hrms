@@ -164,13 +164,13 @@ export function LeavePage() {
                           {item.leaveType.name} · {format(new Date(item.startDate), "MMM d")}–
                           {format(new Date(item.endDate), "MMM d, yyyy")} · {item.days} days
                         </div>
-                        <p className="mt-1 truncate text-xs text-slate-400">{item.reason}</p>
+                        <p className="mt-1 truncate text-xs text-muted">{item.reason}</p>
                       </div>
                       {canApprove && item.status === "PENDING" && (
                         <div className="flex gap-2">
                           <button
                             onClick={() => decide.mutate({ id: item.id, status: "REJECTED" })}
-                            className="btn-secondary !px-3 !py-2 text-red-600"
+                            className="btn-secondary !px-3 !py-2 text-error"
                           >
                             <X size={15} />
                             Decline
@@ -260,12 +260,12 @@ function LeaveCalendar({
             <button
               type="button"
               onClick={() => onRequest(day)}
-              className={`min-h-24 border-b border-r border-line p-2 text-left transition hover:bg-brand-50 ${!isSameMonth(day, month) ? "bg-slate-50 text-slate-300" : ""}`}
+              className={`min-h-24 border-b border-r border-line p-2 text-left transition hover:bg-brand-50 ${!isSameMonth(day, month) ? "bg-base-200 text-muted" : ""}`}
               key={day.toISOString()}
               title={`Request time off starting ${format(day, "MMMM d, yyyy")}`}
             >
               <span
-                className={`grid h-6 w-6 place-items-center rounded-full text-xs ${isSameDay(day, new Date()) ? "bg-brand-700 text-white" : ""}`}
+                className={`grid h-6 w-6 place-items-center rounded-full text-xs ${isSameDay(day, new Date()) ? "bg-neutral text-neutral-content" : ""}`}
               >
                 {format(day, "d")}
               </span>

@@ -58,18 +58,18 @@ export function Layout() {
     enabled: Boolean(user)
   });
   const sidebar = (
-    <aside className="flex h-full w-[248px] flex-col bg-brand-900 px-3.5 py-5 text-white">
+    <aside className="flex h-full w-[248px] flex-col border-r border-base-300 bg-brand-50 px-3.5 py-5 text-base-content">
       <div className="mb-5 flex items-center gap-2.5 px-2.5">
-        <span className="grid h-9 w-9 place-items-center rounded-xl bg-butter text-brand-900">
+        <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary text-primary-content shadow-sm">
           <Sprout size={20} strokeWidth={2.4} />
         </span>
         <div>
           <div className="font-display text-[17px] font-extrabold leading-tight">Nutrivae</div>
-          <div className="text-[10px] font-semibold uppercase tracking-[.16em] text-white/45">People OS</div>
+          <div className="text-[10px] font-semibold uppercase tracking-[.16em] text-muted">People OS</div>
         </div>
       </div>
       <div className="mb-5 px-1">
-        <span className="mb-1 block px-2 text-[9px] font-bold uppercase tracking-wider text-white/40">
+        <span className="mb-1 block px-2 text-[9px] font-bold uppercase tracking-wider text-muted">
           Selected company
         </span>
         <ThemedSelect
@@ -94,7 +94,7 @@ export function Layout() {
                 "group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition",
                 isActive
                   ? "bg-primary text-primary-content shadow-sm"
-                  : "text-white/65 hover:bg-white/8 hover:text-white"
+                  : "text-base-content/70 hover:bg-brand-100 hover:text-base-content"
               )
             }
           >
@@ -103,9 +103,9 @@ export function Layout() {
           </NavLink>
         ))}
       </nav>
-      <div className="mt-auto space-y-1 border-t border-white/10 pt-4">
+      <div className="mt-auto space-y-1 border-t border-base-300 pt-4">
         <a
-          className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-white/60 hover:bg-white/10 hover:text-white"
+          className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-base-content/65 hover:bg-brand-100 hover:text-base-content"
           href="#"
         >
           <HelpCircle size={18} />
@@ -113,7 +113,7 @@ export function Layout() {
         </a>
         {user?.role === "ADMIN" && (
           <NavLink
-            className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-white/60 hover:bg-white/10 hover:text-white"
+            className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-base-content/65 hover:bg-brand-100 hover:text-base-content"
             to="/settings"
           >
             <Settings size={18} />
@@ -123,20 +123,17 @@ export function Layout() {
         <div className="relative">
           <button
             onClick={() => setAccountOpen((current) => !current)}
-            className="mt-3 flex w-full items-center gap-3 rounded-xl bg-white/7 p-2.5 text-left hover:bg-white/10"
+            className="mt-3 flex w-full items-center gap-3 rounded-lg border border-base-300 bg-base-200 p-2.5 text-left hover:bg-brand-100"
           >
             <Avatar name={user?.name ?? "User"} size="sm" />
             <span className="min-w-0 flex-1">
               <span className="block truncate text-xs font-semibold">{user?.name}</span>
-              <span className="block truncate text-[10px] text-white/45">{user?.role.replace("_", " ")}</span>
+              <span className="block truncate text-[10px] text-muted">{user?.role.replace("_", " ")}</span>
             </span>
-            <ChevronDown
-              size={14}
-              className={clsx("text-white/40 transition", accountOpen && "rotate-180")}
-            />
+            <ChevronDown size={14} className={clsx("text-muted transition", accountOpen && "rotate-180")} />
           </button>
           {accountOpen && (
-            <div className="absolute bottom-full left-0 mb-2 w-full rounded-xl border border-white/10 bg-white p-1.5 text-ink shadow-float">
+            <div className="absolute bottom-full left-0 mb-2 w-full rounded-field border border-line bg-base-200 p-1.5 text-base-content shadow-float">
               <button
                 onClick={() => navigate("/profile")}
                 className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm hover:bg-canvas"
@@ -146,7 +143,7 @@ export function Layout() {
               </button>
               <button
                 onClick={() => void logout()}
-                className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-red-600 hover:bg-red-50"
+                className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-error hover:bg-base-100"
               >
                 <LogOut size={16} />
                 Log out
@@ -166,7 +163,7 @@ export function Layout() {
         </div>
       )}
       <div className="min-w-0 flex-1 lg:pl-[248px]">
-        <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-line bg-base-100 px-4 backdrop-blur-xl sm:px-7">
+        <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-line bg-base-200 px-4 backdrop-blur-xl sm:px-7">
           <button className="rounded-lg p-2 lg:hidden" onClick={() => setMobileOpen(true)}>
             <Menu />
           </button>
@@ -182,7 +179,7 @@ export function Layout() {
             <input
               value={globalSearch}
               onChange={(event) => setGlobalSearch(event.target.value)}
-              className="h-10 w-full rounded-field border border-line bg-white pl-10 pr-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary"
+              className="h-10 w-full rounded-field border border-line bg-base-200 pl-10 pr-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary"
               placeholder="Search people..."
             />
           </form>
@@ -200,15 +197,15 @@ export function Layout() {
               <button
                 aria-label="Notifications"
                 onClick={() => setNotificationsOpen((current) => !current)}
-                className="relative grid h-10 w-10 place-items-center rounded-field border border-line bg-white text-muted transition hover:bg-canvas hover:text-ink"
+                className="relative grid h-10 w-10 place-items-center rounded-field border border-line bg-base-200 text-muted transition hover:bg-canvas hover:text-ink"
               >
                 <Bell size={18} />
                 {(notifications.data?.data.length ?? 0) > 0 && (
-                  <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-coral ring-2 ring-white" />
+                  <span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-coral ring-2 ring-base-100" />
                 )}
               </button>
               {notificationsOpen && (
-                <div className="absolute right-0 top-12 z-50 w-[min(22rem,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-line bg-white shadow-float animate-in">
+                <div className="absolute right-0 top-12 z-50 w-[min(22rem,calc(100vw-2rem))] overflow-hidden rounded-field border border-line bg-base-200 shadow-float animate-in">
                   <div className="border-b border-line px-4 py-3">
                     <h3 className="font-display font-bold">Notifications</h3>
                     <p className="text-xs text-muted">{notifications.data?.data.length ?? 0} updates</p>

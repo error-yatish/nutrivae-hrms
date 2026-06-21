@@ -44,7 +44,7 @@ export function Drawer({ open, onClose, title, children }: DrawerProps) {
 
   return createPortal(
     <div
-      className={`fixed inset-0 z-[100] flex justify-end bg-ink/45 backdrop-blur-sm transition-opacity duration-300 ${
+      className={`fixed inset-0 z-[100] flex justify-end bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
         isAnimating ? "opacity-100" : "opacity-0"
       }`}
       onMouseDown={onClose}
@@ -54,7 +54,7 @@ export function Drawer({ open, onClose, title, children }: DrawerProps) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="drawer-title"
-        className={`flex h-full w-full max-w-[560px] flex-col overflow-hidden border-l border-line bg-white shadow-float transition-transform duration-300 ${
+        className={`flex h-full w-full max-w-[560px] flex-col overflow-hidden border-l border-line bg-base-200 shadow-float transition-transform duration-300 ${
           isAnimating ? "translate-x-0" : "translate-x-full"
         }`}
         onMouseDown={(event) => event.stopPropagation()}
@@ -65,7 +65,7 @@ export function Drawer({ open, onClose, title, children }: DrawerProps) {
           </h2>
           <button
             aria-label="Close drawer"
-            className="rounded-lg p-2 text-muted hover:bg-canvas"
+            className="grid h-9 w-9 place-items-center rounded-field text-muted transition hover:bg-base-100 hover:text-base-content"
             onClick={onClose}
           >
             <X size={18} />
