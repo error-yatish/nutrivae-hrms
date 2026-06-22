@@ -196,6 +196,7 @@ export interface AuthUser {
   permissions: string[];
   companyId: string;
   companyName: string;
+  companyCurrency?: string;
   companies: Array<{ id: string; name: string }>;
   employeeId?: string | null;
   name: string;

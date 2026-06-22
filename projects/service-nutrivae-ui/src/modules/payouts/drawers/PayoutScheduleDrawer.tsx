@@ -4,6 +4,8 @@ import { api } from "@/lib/api";
 import { Drawer } from "@/components";
 import { Select } from "@/components/forms";
 import { payoutTypeOptions } from "@/modules/payouts/constants";
+import { useAuth } from "@/lib/auth";
+import { currencyOptions } from "@/modules/settings/constants";
 
 type Employee = { id: string; firstName: string; lastName: string };
 
@@ -18,10 +20,12 @@ export function PayoutScheduleDrawer({
   employees: Employee[];
   onCreated: () => void;
 }) {
+  const { user } = useAuth();
+
   const [form, setForm] = useState({
     employeeId: "",
     amount: "",
-    currency: "USD",
+    currency: user?.companyCurrency ?? "USD",
     type: "SALARY",
     scheduledFor: new Date().toISOString().slice(0, 10),
     note: ""
@@ -32,13 +36,13 @@ export function PayoutScheduleDrawer({
       setForm({
         employeeId: "",
         amount: "",
-        currency: "USD",
+        currency: user?.companyCurrency ?? "USD",
         type: "SALARY",
         scheduledFor: new Date().toISOString().slice(0, 10),
         note: ""
       });
     }
-  }, [open]);
+  }, [open, user]);
 
   const mutation = useMutation({
     mutationFn: () => api.post("/payouts", form),
@@ -81,15 +85,12 @@ export function PayoutScheduleDrawer({
               onChange={(e) => setForm({ ...form, amount: e.target.value })}
             />
           </div>
-          <div>
-            <label className="label">Currency</label>
-            <input
-              className="input"
-              maxLength={3}
-              value={form.currency}
-              onChange={(e) => setForm({ ...form, currency: e.target.value.toUpperCase() })}
-            />
-          </div>
+          <Select
+            label="Currency"
+            value={form.currency}
+            options={currencyOptions}
+            onChange={(value) => setForm({ ...form, currency: value })}
+          />
         </div>
         <div className="grid grid-cols-2 gap-4">
           <Select

@@ -1,5 +1,6 @@
 import { Drawer } from "@/components";
 import { Select } from "@/components/forms";
+import { useAuth } from "@/lib/auth";
 
 type SettingsDrawerProps = {
   open: boolean;
@@ -34,6 +35,7 @@ export function SettingsDrawer({
   timezoneOptions,
   permissions
 }: SettingsDrawerProps) {
+  const { user } = useAuth();
   return (
     <Drawer open={open} onClose={onClose} title={`Create ${modal ?? ""}`}>
       <form
@@ -102,7 +104,7 @@ export function SettingsDrawer({
             </div>
             <Select
               label="Currency"
-              value={form.currency ?? "USD"}
+              value={form.currency ?? user?.companyCurrency ?? "USD"}
               options={currencyOptions}
               onChange={(currency) => onFormChange({ ...form, currency })}
             />

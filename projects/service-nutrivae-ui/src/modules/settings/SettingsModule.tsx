@@ -59,7 +59,7 @@ export function SettingsPage() {
       return api.post("/companies", {
         name: form.name,
         slug: form.slug,
-        currency: form.currency || "USD",
+        currency: form.currency || user?.companyCurrency || "USD",
         country: form.country || "United States",
         timezone: form.timezone || "America/New_York",
         legalName: form.legalName,
